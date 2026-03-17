@@ -1,12 +1,12 @@
 import './App.css';
 import { Route, Routes } from 'react-router';
-import HomePage from './pages/home/Home.page';
+import HomePage from './pages/common/Home.page';
 import ArenaPage from './pages/game/Arena.page';
 import CardListPage from './pages/game/CardList.page';
 import RulesPage from './pages/game/Rules.page';
 import RegisterPage from './pages/auth/Register.page';
 import LoginPage from './pages/auth/Login.page';
-import ProfilePage from './pages/profile/Profile.page';
+import ProfilePage from './pages/common/Profile.page';
 
 function App() {
 
