@@ -1,15 +1,17 @@
 import { useActionState } from "react";
 import z from 'zod';
+import type { MemberDto } from '../../@types/member';
+import {PushRegistration} from '../../services/auth/auth.service';
 
 
 // Validation Scheme (zod)
-const MemberDataScheme =
+const MemberScheme =
     z.object({
         nick: z.string()
             .trim()
             .min(3, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' })
             .max(50, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' })
-            .nullable(),
+            .nullable(),                                                                                            //? Ou optionnal ?
         email: z.email({ error: "L'adresse email n'a pas un format valide !" })
             .toLowerCase(),
         pwd1: z.string()
@@ -18,6 +20,11 @@ const MemberDataScheme =
             .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/, { error: "Le mot de passe doit contenir minimum 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre" }),
     })
         .refine((data) => data.pwd1 === data.pwd2, { error: "Les mots de passe ne sont pas identiques", path: ['pwd2'] });
+
+
+// Extraction of type
+export type MemberData = z.infer<typeof MemberScheme>;
+
 
 // Componant
 type MemberState = {
@@ -34,10 +41,10 @@ type MemberState = {
 export default function RegisterPage() {
 
     // form Action
-    const onRegisterSubmit = async (state: MemberState, formData: FormData) => {
+    const onRegisterSubmit = async (_state: MemberState, formData: FormData) => {
 
         //data validation w. zod
-        const { data, error, success } = MemberDataScheme.safeParseAsync(Object.fromEntries(formData.entries())); // TODO : Check si mettre async est un bon plan ou pas ?
+        const { data, error, success } = MemberScheme.safeParse(Object.fromEntries(formData.entries())); // TODO : Check pq en async ça déconne ?
 
 
         // Error handling
@@ -48,9 +55,19 @@ export default function RegisterPage() {
             };
         }
 
-        // Service calling
-        //* const result = PostNewMember(data);
+        // Mapping
+        const newMember: MemberDto = {
+            nick: data.nick,
+            email: data.email,
+            password: data.pwd1,
+        }
 
+        // Service calling
+        const result = PushRegistration(newMember);
+
+        // Check dev
+        console.log(newMember, result);
+        
         return {
             formData: null,
             error: null
@@ -59,7 +76,7 @@ export default function RegisterPage() {
 
     // Utilisation
 
-    const [state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
+    const [_state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
 
     return (
         <form className='form' action={handleSubmit}>
