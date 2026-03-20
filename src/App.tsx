@@ -7,11 +7,13 @@ import RulesPage from './pages/game/Rules.page';
 import RegisterPage from './pages/auth/Register.page';
 import LoginPage from './pages/auth/Login.page';
 import ProfilePage from './pages/common/Profile.page';
+import { Toaster } from 'sonner';
 
 function App() {
 
   return (
     <>
+      <Toaster richColors closeButton />
       <Routes>
         <Route index element={<HomePage />} />
         <Route path='game'>

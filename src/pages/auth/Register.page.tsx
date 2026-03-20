@@ -1,7 +1,8 @@
-import { useActionState } from "react";
+import { useActionState, useId } from "react";
 import z from 'zod';
 import type { MemberDto } from '../../@types/member';
 import {PushRegistration} from '../../services/auth/auth.service';
+import { toast } from "sonner";
 
 
 // Validation Scheme (zod)
@@ -38,6 +39,9 @@ type MemberState = {
 };
 
 
+  // Accessibility Id
+  const inputId = useId();
+
 export default function RegisterPage() {
 
     // form Action
@@ -63,10 +67,17 @@ export default function RegisterPage() {
         }
 
         // Service calling
-        const result = PushRegistration(newMember);
+        const result = await PushRegistration(newMember);
 
         // Check dev
         console.log(newMember, result);
+
+        if(result.success) {
+            toast.success('Votre compte à bien été créé ! 🎉')
+        }
+        else {
+            toast.error(result.error);            
+        }
         
         return {
             formData: null,
@@ -76,25 +87,30 @@ export default function RegisterPage() {
 
     // Utilisation
 
-    const [_state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
+    const [state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
 
     return (
         <form className='form' action={handleSubmit}>
             <div>
-                <label htmlFor='nick'>Pseudo : </label>
-                <input type='text' id='nick' name='nick' />
+                <label htmlFor={inputId + 'nick'}>Pseudo : </label>
+                <input type='text' id={inputId + 'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
+                {state.error?.nick && (<span>{state.error.nick.join(', ')}</span>)}
             </div>
             <div>
-                <label htmlFor="email">Email* : </label>
-                <input type="email" id='email' name='email' placeholder='ex: user@example.com' required />
+                <label htmlFor={inputId + "email"}>Email* : </label>
+                <input type="email" id={inputId + 'email'} name='email' placeholder='ex: user@example.com' required defaultValue={state.formData?.get('email')?.toString()} />
+                {state.error?.email && (<span>{state.error.email.join(', ')}</span>)}
+
             </div>
             <div>
-                <label htmlFor='pwd1'>Choix du Mot de Passe* :</label>
-                <input type='text' id='pwd1' name='pwd1' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                <label htmlFor={inputId + 'pwd1'}>Choix du Mot de Passe* :</label>
+                <input type='text' id={inputId + 'pwd1'} name='pwd1' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
             </div>
             <div>
-                <label htmlFor='pwd2'>Confirmation du Mot de Passe* :</label>
-                <input type='text' id='pwd2' name='pwd2' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                <label htmlFor={inputId + 'pwd2'}>Confirmation du Mot de Passe* :</label>
+                <input type='text' id={inputId + 'pwd2'} name='pwd2' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                {state.error?.pwd2 && (<span>{state.error.pwd2.join(', ')}</span>)}
             </div>
             <button disabled={isPending} className='btn-form' type='submit'>S'enregistrer</button>
         </form>
