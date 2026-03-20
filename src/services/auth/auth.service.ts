@@ -15,14 +15,17 @@ export async function PushRegistration(newMember: MemberDto){
             {baseURL: API_URL});
     }
     catch (error: any) {
-        const msg = error.result.data?.detail;
-
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);        
+        
         return {
             success: false,
             error: msg ?? error.message
         }
     }
 
+    console.log(result);
+    
     return {
         success: true,
         data: result.data

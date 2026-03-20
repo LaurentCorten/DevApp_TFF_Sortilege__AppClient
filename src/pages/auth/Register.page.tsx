@@ -1,4 +1,4 @@
-import { useActionState, useId } from "react";
+import { useActionState } from "react";
 import z from 'zod';
 import type { MemberDto } from '../../@types/member';
 import {PushRegistration} from '../../services/auth/auth.service';
@@ -10,9 +10,8 @@ const MemberScheme =
     z.object({
         nick: z.string()
             .trim()
-            .min(3, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' })
             .max(50, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' })
-            .nullable(),                                                                                            //? Ou optionnal ?
+            .nullable(),   //? Ou optionnal ?
         email: z.email({ error: "L'adresse email n'a pas un format valide !" })
             .toLowerCase(),
         pwd1: z.string()
@@ -40,12 +39,12 @@ type MemberState = {
 
 
   // Accessibility Id
-  const inputId = useId();
+//   const inputId = useId(); //TODO : Pourquoi Uncaught TypeError: can't access property "useId", resolveDispatcher() is null ?
 
 export default function RegisterPage() {
 
     // form Action
-    const onRegisterSubmit = async (_state: MemberState, formData: FormData) => {
+    const onRegisterSubmit = async (state: MemberState, formData: FormData) => {
 
         //data validation w. zod
         const { data, error, success } = MemberScheme.safeParse(Object.fromEntries(formData.entries())); // TODO : Check pq en async ça déconne ?
@@ -55,7 +54,7 @@ export default function RegisterPage() {
         if (!success) {
             return {
                 formData,
-                error: z.flattenError(error).fieldErrors
+                error: z.flattenError(error).fieldErrors // TODO : Check pq pour une erreur ttes les erreurs sont levée ?
             };
         }
 
@@ -73,16 +72,18 @@ export default function RegisterPage() {
         console.log(newMember, result);
 
         if(result.success) {
-            toast.success('Votre compte à bien été créé ! 🎉')
+            toast.success(result.data.message)
+
+            return {
+                formData: null,
+                error: null
+            };
         }
         else {
             toast.error(result.error);            
+            return state; // TODO : Check pq le formData ne repasse pas, càd garde pas les nick et email pour le default ?
         }
         
-        return {
-            formData: null,
-            error: null
-        };
     };
 
     // Utilisation
@@ -92,24 +93,24 @@ export default function RegisterPage() {
     return (
         <form className='form' action={handleSubmit}>
             <div>
-                <label htmlFor={inputId + 'nick'}>Pseudo : </label>
-                <input type='text' id={inputId + 'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
+                <label htmlFor={'nick'}>Pseudo : </label>
+                <input type='text' id={'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
                 {state.error?.nick && (<span>{state.error.nick.join(', ')}</span>)}
             </div>
             <div>
-                <label htmlFor={inputId + "email"}>Email* : </label>
-                <input type="email" id={inputId + 'email'} name='email' placeholder='ex: user@example.com' required defaultValue={state.formData?.get('email')?.toString()} />
+                <label htmlFor={"email"}>Email* : </label>
+                <input type="email" id={'email'} name='email' placeholder='ex: user@example.com' required defaultValue={state.formData?.get('email')?.toString()} />
                 {state.error?.email && (<span>{state.error.email.join(', ')}</span>)}
 
             </div>
             <div>
-                <label htmlFor={inputId + 'pwd1'}>Choix du Mot de Passe* :</label>
-                <input type='text' id={inputId + 'pwd1'} name='pwd1' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                <label htmlFor={'pwd1'}>Choix du Mot de Passe* :</label>
+                <input type='text' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
                 {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
             </div>
             <div>
-                <label htmlFor={inputId + 'pwd2'}>Confirmation du Mot de Passe* :</label>
-                <input type='text' id={inputId + 'pwd2'} name='pwd2' placeholder='min 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre' required />
+                <label htmlFor={'pwd2'}>Confirmation du Mot de Passe* :</label>
+                <input type='text' id={'pwd2'} name='pwd2' placeholder='ex: Test123!' required />
                 {state.error?.pwd2 && (<span>{state.error.pwd2.join(', ')}</span>)}
             </div>
             <button disabled={isPending} className='btn-form' type='submit'>S'enregistrer</button>
