@@ -30,7 +30,7 @@ export default function LoginPage() {
         }
 
         const logMember: LogMemberDto = {
-            email: data.email,
+            emailAddress: data.email,
             password: data.pwd1,
         };
 
@@ -58,6 +58,8 @@ export default function LoginPage() {
 
 
     const [state, handleSubmit, isPending] = useActionState(onLoginSubmit, { formData: null, error: null });
+
+
 
     return (
         <>

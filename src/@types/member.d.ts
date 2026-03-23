@@ -17,7 +17,7 @@ type NewMemberDto = {
 
 
 type LogMemberDto = {
-    email: string,
+    emailAddress: string,
     password: string,
 };
 // TODO Check : En Ts les , semble remplacable par des ; qu'en est-il ???
