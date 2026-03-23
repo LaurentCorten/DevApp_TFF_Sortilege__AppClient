@@ -8,11 +8,13 @@ import RegisterPage from './pages/auth/Register.page';
 import LoginPage from './pages/auth/Login.page';
 import ProfilePage from './pages/common/Profile.page';
 import { Toaster } from 'sonner';
+import Header from './components/header/Header';
 
 function App() {
 
   return (
     <>
+      <Header />
       <Toaster richColors closeButton />
       <Routes>
         <Route index element={<HomePage />} />
