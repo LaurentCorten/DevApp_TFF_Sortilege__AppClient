@@ -1,9 +1,11 @@
 import { useActionState } from "react";
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { toast } from "sonner";
 import z from "zod";
 import type { LogMemberDto, MemberState } from "../../@types/member";
 import { PushLogin } from "../../services/auth/auth.service";
+import { useAtom } from "jotai";
+import { activeToken } from "../../atom/store";
 
 const LogMemberScheme =
     z.object({
@@ -17,7 +19,9 @@ const LogMemberScheme =
 
 export default function LoginPage() {
 
-    const onLoginSubmit = async (_state: MemberState, formData: FormData): Promise<MemberState> => {
+    const [token, setToken] = useAtom(activeToken);
+
+    const loginAction = async (_state: MemberState, formData: FormData): Promise<MemberState> => {
 
         const { data, error, success } = await LogMemberScheme.safeParseAsync(Object.fromEntries(formData.entries()));
 
@@ -36,10 +40,12 @@ export default function LoginPage() {
 
         const result = await PushLogin(logMember);
 
-        console.log(logMember, result);
+        // console.log(logMember, result);
 
         if (result.success) {
             toast.success(result.data.message);
+
+            setToken(result.data.token);
 
             return {
                 formData: null,
@@ -57,9 +63,11 @@ export default function LoginPage() {
     };
 
 
-    const [state, handleSubmit, isPending] = useActionState(onLoginSubmit, { formData: null, error: null });
+    const [state, handleSubmit, isPending] = useActionState(loginAction, { formData: null, error: null });
 
-
+    if (token) {
+        return <Navigate to='/' replace />
+    }
 
     return (
         <>
