@@ -1,15 +1,16 @@
 import { useAtom } from "jotai";
 import { activeToken } from "../../atom/store";
 import { useNavigate } from "react-router";
+import style from "../../components/header/Header.module.css"
 
 
-export default function AuthBtn () {
+export default function AuthBtn() {
 
     const [auth, setAuth] = useAtom(activeToken);
-const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const authBtnAction = () => {
-        if(auth){
+        if (auth) {
             setAuth(null);
             navigate('/');
         } else {
@@ -17,10 +18,10 @@ const navigate = useNavigate();
         }
     };
 
-return (
-    <button onClick={authBtnAction}>
-        {auth ? 'Se déconnecter' : 'Se connecter'}
-    </button>
-);
+    return (
+        <button className={style["auth-btn"]} onClick={authBtnAction}>
+            {auth ? 'Se déconnecter' : 'Se connecter'}
+        </button>
+    );
 
 }

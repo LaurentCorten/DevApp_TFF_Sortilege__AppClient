@@ -1,10 +1,11 @@
 import { Link } from 'react-router';
+import style from "../../components/header/Header.module.css"
 
 
 export default function NavBar() {
 
     return (
-        <nav className='nav-bar'>
+        <nav id="nav-bar" className={style["nav-bar"]}>
             <ul>
                 <li>
                     <Link to="/">Accueil</Link>
@@ -16,6 +17,6 @@ export default function NavBar() {
                     <Link to="/profile">Votre Profile</Link>
                 </li>
             </ul>
-        </nav>
+        </nav >
     );
 }

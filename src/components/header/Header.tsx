@@ -1,15 +1,21 @@
-import NavBar from "../../features/navBar/NavBar";
 import logo from "../../assets/images/logoSansFond.png";
-import AuthBtn from "../../features/navBar/AuthBtn";
+import style from './Header.module.css';
+import { Link } from "react-router";
+import BurgerMenu from "../../features/navigation/Hamburger";
 
 export default function Header() {
 
     return (
-        <header id='header' className="header-global">
-            <img className="header-img" src={logo} alt="logo des six lances" />
-            <h1>Sortilège</h1>
-            <NavBar />
-            <AuthBtn />
+        <header id='header' className={style["main-header"]}>
+            <div className={style["logo-container"]}>
+                <img className={style["header-img"]} src={logo} alt="logo des six lances" />
+            </div>
+            <div className={style["title-container"]}>
+                <Link to="/"><h1>Sortilège</h1></Link>
+            </div>
+            <div className={style["burger-container"]}>
+                <BurgerMenu />
+            </div>
         </header>
     );
 }
