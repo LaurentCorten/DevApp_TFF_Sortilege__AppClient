@@ -1,11 +1,12 @@
 import { Link } from 'react-router';
-import style from "../../components/header/Header.module.css"
+import "./Navigation.css"
+import AuthBtn from './AuthBtn';
 
 
 export default function NavBar() {
 
     return (
-        <nav id="nav-bar" className={style["nav-bar"]}>
+        <nav id="nav-bar" className="nav-bar">
             <ul>
                 <li>
                     <Link to="/">Accueil</Link>
@@ -15,6 +16,9 @@ export default function NavBar() {
                 </li>
                 <li>
                     <Link to="/profile">Votre Profile</Link>
+                </li>
+                <li>
+                    <AuthBtn />
                 </li>
             </ul>
         </nav >

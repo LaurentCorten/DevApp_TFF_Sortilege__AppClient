@@ -16,7 +16,7 @@ function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className='main-content'>
         <Toaster richColors closeButton />
         <Routes>
           <Route index element={<HomePage />} />

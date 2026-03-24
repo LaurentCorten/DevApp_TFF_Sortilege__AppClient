@@ -35,21 +35,37 @@ a {
     min-height: 100svh;
     width: 100vw;
 
-    display: grid;
-    grid-template-areas: "head" "content";
-    grid-template-rows: 100px 1fr;
+    display: flex;
+    flex-direction: column;
+}
+        
+h1
+{
+    font-size: 3rem;
+    font-family: cursive;
+    color: black;
 }
 
-header {
-    height: 100%;
-    width: 100%;
-    grid-area: head;
+h2
+{
+    font-size: 2rem;
+    text-decoration: underline;
 }
 
-main {
+.main-content
+{
     height: 100%;
     width: 100%;
-    grid-area: content;
+    margin-top: 80px;
+
+    display: flex;
+    flex-direction: column;
 }
+
+.test
+{
+    color: hsl(45, 29%, 97%);
+}
+
 
 

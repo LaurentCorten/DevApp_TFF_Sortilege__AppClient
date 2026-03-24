@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import "../../tailwind.custom.css";
+
+.burger-content
+{
+    @apply bg-offwhite/85 h-lvh w-[67vw] absolute top-0 right-0 z-40 flex flex-col;
+}
+
+.nav-bar
+{
+    @apply w-full flex flex-col items-center pt-20 md:pt-0;
+    background-color: rgba(255, 255, 0, 0.664);
+
+    >ul
+    {
+        @apply w-full flex flex-col items-center gap-8 md:w-fit md:h-full md:flex-row ;
+
+        >li
+        {
+            @apply w-full py-4 text-3xl text-center;
+
+            &:hover
+            {
+                @apply bg-offwhite/85 shadow-2xl;
+            }
+        }
+    }
+}
+
+.auth-btn
+{
+    /* @apply bg-teal-400; */
+   &:visited {
+    color: #a10de6;
+  }
+
+  &:hover {
+    color: #535bf2;
+  }
+}
