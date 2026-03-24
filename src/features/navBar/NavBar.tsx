@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 
-export default function NavBarZones() {
+export default function NavBar() {
 
     return (
         <nav className='nav-bar'>
@@ -14,9 +14,6 @@ export default function NavBarZones() {
                 </li>
                 <li>
                     <Link to="/profile">Votre Profile</Link>
-                </li>
-                <li>
-                    <Link to="/auth">Connection</Link>
                 </li>
             </ul>
         </nav>
