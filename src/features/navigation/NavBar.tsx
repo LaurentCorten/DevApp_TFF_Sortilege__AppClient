@@ -12,10 +12,10 @@ export default function NavBar() {
                     <Link to="/">Accueil</Link>
                 </li>
                 <li>
-                    <Link to="/game">Le Jeu</Link>
+                    <Link to="/game">Jeu</Link>
                 </li>
                 <li>
-                    <Link to="/profile">Votre Profile</Link>
+                    <Link to="/profile">Profil</Link>
                 </li>
                 <li>
                     <AuthBtn />

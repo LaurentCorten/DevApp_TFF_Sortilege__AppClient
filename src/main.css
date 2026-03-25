@@ -1,7 +1,6 @@
 :root
 {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -12,6 +11,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+*{line-height: normal;}
 
 @media (prefers-color-scheme: light)
 {
@@ -54,9 +55,10 @@ h2
 
 .main-content
 {
-  height: 100%;
+  flex:1;
+  /* min-height: 100%; */
   width: 100%;
-  margin-top: 80px;
+  padding-top: 20px;
 
   display: flex;
   flex-direction: column;
@@ -65,4 +67,14 @@ h2
 .test
 {
   color: hsl(45, 29%, 97%);
+}
+
+
+footer
+{
+  font: smaller italic;
+  background-color: black;
+  color: #ffffff;
+  display: flex;
+  place-content: center;
 }

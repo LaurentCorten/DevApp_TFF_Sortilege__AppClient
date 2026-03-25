@@ -31,8 +31,8 @@ function App() {
           </Route>
           <Route path='profile' element={<ProfilePage />} />
         </Routes>
-        <Footer />
       </main>
+      <Footer />
     </>
   );
 }
