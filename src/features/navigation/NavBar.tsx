@@ -1,12 +1,12 @@
 import { Link } from 'react-router';
-import "./Navigation.css"
+import style from "./Navigation.module.css";
 import AuthBtn from './AuthBtn';
 
 
 export default function NavBar() {
 
     return (
-        <nav id="nav-bar" className="nav-bar">
+        <nav id="nav-bar" className={style["nav-bar"]}>
             <ul>
                 <li>
                     <Link to="/">Accueil</Link>

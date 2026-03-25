@@ -72,7 +72,7 @@
             display: none;
         }
 
-        .hamburger-react
+        :global(.hamburger-react)
         {
             z-index: 50;
         }

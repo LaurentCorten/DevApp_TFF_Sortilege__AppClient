@@ -1,7 +1,7 @@
 import { useAtom } from "jotai";
 import { activeToken } from "../../atom/store";
 import { useNavigate } from "react-router";
-import "./Navigation.css"
+import style from "./Navigation.module.css";
 
 
 export default function AuthBtn() {
@@ -14,12 +14,12 @@ export default function AuthBtn() {
             setAuth(null);
             navigate('/');
         } else {
-            navigate('/auth')
+            navigate('/auth');
         }
     };
 
     return (
-        <button className="auth-btn" onClick={authBtnAction}>
+        <button className={style["auth-btn"]} onClick={authBtnAction}>
             {auth ? 'Se déconnecter' : 'Se connecter'}
         </button>
     );
