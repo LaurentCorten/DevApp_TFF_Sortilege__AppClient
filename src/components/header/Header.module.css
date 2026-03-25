@@ -21,29 +21,58 @@
         gap: 1rem;
     }
 
-    .logo-container
-    {
+    .mobile-container
+    {   
         height: fit-content;
         width: fit-content;
-        margin: 1rem 0 1rem 1rem;
-        display: flex;
-        place-items: center;
-        
-        .header-img
-        {
-            height: 3rem;
-            /* object-fit: cover; */
-            aspect-ratio: 1/1;
-        }
-    }
 
-    .title-container
-    {
-        height: fit-content;
-        width: fit-content;
         display: flex;
-        place-items: center;
-        
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+         .logo-container
+        {
+            height: fit-content;
+            width: fit-content;
+            margin: 1rem 0 1rem 1rem;
+            display: flex;
+            place-items: center;
+            
+            .header-img
+            {
+                height: 3rem;
+                /* object-fit: cover; */
+                aspect-ratio: 1/1;
+            }
+        }
+
+        .title-container
+        {
+            height: fit-content;
+            width: fit-content;
+            display: flex;
+            place-items: center;
+            
+        }
+
+        .burger-container
+        {
+            height: fit-content;
+            width: fit-content;
+            margin: 1rem 1rem 1rem 0;
+            display: flex;
+            z-index: 30;
+
+            @media (width >= 48rem /* 768px */) {
+                display: none;
+            }
+
+            :global(.hamburger-react)
+            {
+                z-index: 50;
+            }
+        }
     }
 
     .nav-container
@@ -58,23 +87,5 @@
             justify-self: end;
 
         }        
-    }
-
-    .burger-container
-    {
-        height: fit-content;
-        width: fit-content;
-        margin: 1rem 1rem 1rem 0;
-        display: flex;
-        z-index: 30;
-
-        @media (width >= 48rem /* 768px */) {
-            display: none;
-        }
-
-        :global(.hamburger-react)
-        {
-            z-index: 50;
-        }
     }
 }

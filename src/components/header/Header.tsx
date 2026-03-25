@@ -8,14 +8,16 @@ export default function Header() {
 
     return (
         <header id='header' className={style["main-header"]}>
-            <div className={style["logo-container"]}>
-                <img className={style["header-img"]} src={logo} alt="logo des six lances" />
-            </div>
-            <div className={style["title-container"]}>
-                <Link to="/"><h1>Sortilège</h1></Link>
-            </div>
-            <div className={style["burger-container"]}>
-                <BurgerMenu />
+            <div className={style["mobile-container"]}>
+                <div className={style["logo-container"]}>
+                    <img className={style["header-img"]} src={logo} alt="logo des six lances" />
+                </div>
+                <div className={style["title-container"]}>
+                    <Link to="/"><h1>Sortilège</h1></Link>
+                </div>
+                <div className={style["burger-container"]}>
+                    <BurgerMenu />
+                </div>
             </div>
             <div className={style["nav-container"]}>
                 <NavBar />
