@@ -6,6 +6,7 @@ import type { LogMemberDto, MemberState } from "../../@types/member";
 import { PushLogin } from "../../services/auth/auth.service";
 import { useAtom } from "jotai";
 import { activeToken } from "../../atom/store";
+import style from "./Auth.module.css";
 
 const LogMemberScheme =
     z.object({
@@ -66,13 +67,13 @@ export default function LoginPage() {
     const [state, handleSubmit, isPending] = useActionState(loginAction, { formData: null, error: null });
 
     if (token) {
-        return <Navigate to='/' replace />
+        return <Navigate to='/' replace />;
     }
 
     return (
-        <>
+        <section className={style["form-container"]}>
             <h2>Connection</h2>
-            <form className='form' action={handleSubmit}>
+            <form className={style['form']} action={handleSubmit}>
                 <div>
                     <label htmlFor={"email"}>Email* : </label>
                     <input type="email" id={'email'} name='email' placeholder='ex: user@example.com' required />
@@ -83,13 +84,13 @@ export default function LoginPage() {
                     <input type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
                     {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className='btn-form' type='submit'>Se connecter</button>
+                <button disabled={isPending} className={style['btn-form']} type='submit'>Se connecter</button>
                 {state.error?.pwd1 && (<span>{state.error?.pwd1}</span>)}
             </form>
             <p>
                 Pas encore Inscrit ?
-                <Link to='register'><button className='btn-link'>Inscrivez-vous ici !</button></Link>
+                <Link to='register'><button className={style['btn-link']}>Inscrivez-vous ici !</button></Link>
             </p>
-        </>
+        </section>
     );
 }

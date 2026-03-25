@@ -4,6 +4,7 @@ import { PushRegistration } from '../../services/auth/auth.service';
 import { toast } from "sonner";
 import { Link } from "react-router";
 import type { MemberState, NewMemberDto } from "../../@types/member";
+import style from "./Auth.module.css";
 
 
 
@@ -12,8 +13,7 @@ const NewMemberScheme =
     z.object({
         nick: z.string()
             .trim()
-            .max(50, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' })
-            .nullable(),   // TODO Check : Ou optionnal ?
+            .max(50, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' }),
         email: z.email({ error: "L'adresse email n'a pas un format valide !" })
             .toLowerCase(),
         pwd1: z.string()
@@ -84,9 +84,9 @@ export default function RegisterPage() {
     const [state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
 
     return (
-        <>
+        <section className={style["form-container"]}>
             <h2>Inscritions</h2>
-            <form className='form' action={handleSubmit}>
+            <form className={style['form']} action={handleSubmit}>
                 <div>
                     <label htmlFor={'nick'}>Pseudo : </label>
                     <input type='text' id={'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
@@ -108,13 +108,13 @@ export default function RegisterPage() {
                     <input type='password' id={'pwd2'} name='pwd2' placeholder='ex: Test123!' required />
                     {state.error?.pwd2 && (<span>{state.error.pwd2.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className='btn-form' type='submit'>S'enregistrer</button>
+                <button disabled={isPending} className={style['btn-form']} type='submit'>S'enregistrer</button>
                 {state.error?.server && (<span>{state.error.server}</span>)}
             </form>
             <p>
                 Déjà Inscrit ?
-                <Link to='../'><button className='btn-link'>Connectez-vous ici !</button></Link>
+                <Link to='../'><button className={style['btn-link']}>Connectez-vous ici !</button></Link>
             </p>
-        </>
+        </section>
     );
 } 

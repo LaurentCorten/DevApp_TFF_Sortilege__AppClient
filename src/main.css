@@ -33,7 +33,7 @@ a
 
 #root
 {
-  min-height: 100svh;
+  height: 100svh;
   width: 100vw;
 
   display: flex;
@@ -56,12 +56,13 @@ h2
 .main-content
 {
   flex:1;
-  /* min-height: 100%; */
   width: 100%;
   padding-top: 20px;
 
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .test
