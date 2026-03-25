@@ -6,7 +6,7 @@ import style from "./Navigation.module.css";
 
 export default function BurgerMenu() {
 
-    const [isOpen, setOpen] = useState<boolean>(false);
+    const [isOpen, setOpen] = useState(false);
 
 
     return (
