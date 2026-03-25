@@ -16,10 +16,9 @@ const NewMemberScheme =
             .max(50, { error: 'Un pseudo doit faire entre 3 et 50 caractères !' }),
         email: z.email({ error: "L'adresse email n'a pas un format valide !" })
             .toLowerCase(),
-        pwd1: z.string()
+        pwd1: z.string() // TODO : Check comment aller à la ligne pour l'erreur
             .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/, { error: "Le mot de passe doit contenir minimum 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre" }),
-        pwd2: z.string()
-            .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/, { error: "Le mot de passe doit contenir minimum 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre" }),
+        pwd2: z.string(),
     })
         .refine((data) => data.pwd1 === data.pwd2, { error: "Les mots de passe ne sont pas identiques", path: ['pwd2'] });
 
@@ -108,13 +107,13 @@ export default function RegisterPage() {
                     <input type='password' id={'pwd2'} name='pwd2' placeholder='ex: Test123!' required />
                     {state.error?.pwd2 && (<span>{state.error.pwd2.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className={style['btn-form']} type='submit'>S'enregistrer</button>
+                <button disabled={isPending} className={style['btn']} type='submit'>S'enregistrer</button>
                 {state.error?.server && (<span>{state.error.server}</span>)}
             </form>
-            <p>
-                Déjà Inscrit ?
-                <Link to='../'><button className={style['btn-link']}>Connectez-vous ici !</button></Link>
-            </p>
+            <div>
+                <p>Déjà Inscrit ?</p>
+                <Link to='../'><button className={style['btn']}>Connectez-vous ici !</button></Link>
+            </div>
         </section>
     );
 } 

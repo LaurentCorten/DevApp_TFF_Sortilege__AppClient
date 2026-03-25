@@ -84,13 +84,13 @@ export default function LoginPage() {
                     <input type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
                     {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className={style['btn-form']} type='submit'>Se connecter</button>
+                <button disabled={isPending} className={style['btn']} type='submit'>Se connecter</button>
                 {state.error?.pwd1 && (<span>{state.error?.pwd1}</span>)}
             </form>
-            <p>
-                Pas encore Inscrit ?
-                <Link to='register'><button className={style['btn-link']}>Inscrivez-vous ici !</button></Link>
-            </p>
+            <div>
+                <p>Pas encore Inscrit ?</p>
+                <Link to='register'><button className={style['btn']}>Inscrivez-vous ici !</button></Link>
+            </div>
         </section>
     );
 }

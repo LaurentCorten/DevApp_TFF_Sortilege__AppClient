@@ -13,7 +13,7 @@ export default function Header() {
                     <img className={style["header-img"]} src={logo} alt="logo des six lances" />
                 </div>
                 <div className={style["title-container"]}>
-                    <Link to="/"><h1>Sortilège</h1></Link>
+                    <Link to="/" className="no-hover"><h1 id="mon-titre">Sortilège</h1></Link>
                 </div>
                 <div className={style["burger-container"]}>
                     <BurgerMenu />
