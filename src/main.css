@@ -1,0 +1,88 @@
+@import "tailwindcss";
+@import "./tailwind.custom.css";
+
+:root
+{
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*{line-height: normal;}
+
+@media (prefers-color-scheme: light)
+{
+  :root
+  {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+a
+{
+  &:hover
+  {
+    @apply text-hoverTxt;
+  }
+}
+
+#root
+{
+  height: 100svh;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+}
+
+h1
+{
+  font-size: 48px;
+  font-family: cursive;
+}
+
+a.no-hover:hover {
+  color: inherit !important;
+}
+
+
+h2
+{
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.main-content
+{
+  flex:1;
+  width: 100%;
+  padding-top: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.test
+{
+  color: hsl(45, 29%, 97%);
+}
+
+
+footer
+{
+  font: smaller italic;
+  background-color: black;
+  color: #ffffff;
+  display: flex;
+  place-content: center;
+}

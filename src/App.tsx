@@ -9,26 +9,30 @@ import LoginPage from './pages/auth/Login.page';
 import ProfilePage from './pages/common/Profile.page';
 import { Toaster } from 'sonner';
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 
 function App() {
 
   return (
     <>
       <Header />
-      <Toaster richColors closeButton />
-      <Routes>
-        <Route index element={<HomePage />} />
-        <Route path='game'>
-          <Route index element={<ArenaPage />} />
-          <Route path='cardList' element={<CardListPage />} />
-          <Route path='rules' element={<RulesPage />} />
-        </Route>
-        <Route path='auth'>
-          <Route index element={<LoginPage />} />
-          <Route path='register' element={<RegisterPage />} />
-        </Route>
-        <Route path='profile' element={<ProfilePage />} />
-      </Routes>
+      <main className='main-content'>
+        <Toaster richColors closeButton />
+        <Routes>
+          <Route index element={<HomePage />} />
+          <Route path='game'>
+            <Route index element={<ArenaPage />} />
+            <Route path='cardList' element={<CardListPage />} />
+            <Route path='rules' element={<RulesPage />} />
+          </Route>
+          <Route path='auth'>
+            <Route index element={<LoginPage />} />
+            <Route path='register' element={<RegisterPage />} />
+          </Route>
+          <Route path='profile' element={<ProfilePage />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
 }

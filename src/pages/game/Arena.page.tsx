@@ -14,7 +14,7 @@ export default function ArenaPage() {
 
     return (
         <>
-            <h1>Page du Jeu en Lui-Même</h1>
+            <h2>Page du Jeu en Lui-Même</h2>
         </>
     );
 }

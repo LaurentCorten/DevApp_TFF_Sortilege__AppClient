@@ -10,7 +10,7 @@ export type MemberState = {
 };
 
 type NewMemberDto = {
-    nick: string | null;// TODO : Check : Vu que <input> tjs string, null en fait impossible, tjs au pir une empty string, non ? Du coup nullable utile ?
+    nick: string;
     email: string;
     password: string;
 };
@@ -20,4 +20,8 @@ type LogMemberDto = {
     emailAddress: string,
     password: string,
 };
-// TODO Check : En Ts les , semble remplacable par des ; qu'en est-il ???
+
+
+
+
+
