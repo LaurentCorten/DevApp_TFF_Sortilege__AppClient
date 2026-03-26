@@ -54,10 +54,13 @@ export default function LoginPage() {
             };
         } else {
             toast.error(result.error);
+            console.log(result.error);
 
             return {
                 formData: null,
-                error: result.error
+                error: {
+                    server: result.error
+                }
             };
         }
 
@@ -85,7 +88,7 @@ export default function LoginPage() {
                     {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
                 </div>
                 <button disabled={isPending} className={style['btn']} type='submit'>Se connecter</button>
-                {state.error?.pwd1 && (<span>{state.error?.pwd1}</span>)}
+                {state.error?.server && (<span>{state.error?.server}</span>)}
             </form>
             <div>
                 <p>Pas encore Inscrit ?</p>
