@@ -1,5 +1,9 @@
 @import "tailwindcss";
 @import "./tailwind.custom.css";
+@font-face {
+    font-family: "Fraktur";
+    src: url(./assets/fonts/gebetbuch-fraktur/GebetbuchFraktur.ttf);
+}
 
 :root
 {
@@ -46,7 +50,7 @@ a
 h1
 {
   font-size: 48px;
-  font-family: cursive;
+  font-family: "Fraktur";
 }
 
 a.no-hover:hover {
@@ -60,21 +64,20 @@ h2
   text-decoration: underline;
 }
 
+.big-screen-only
+{
+    @apply hidden xl:flex;
+}
+
 .main-content
 {
   flex:1;
   width: 100%;
-  padding-top: 20px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.test
-{
-  color: hsl(45, 29%, 97%);
 }
 
 
@@ -85,4 +88,12 @@ footer
   color: #ffffff;
   display: flex;
   place-content: center;
+}
+
+
+
+
+.color-test
+{
+  color: hsl(45, 29%, 97%);
 }

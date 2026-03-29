@@ -9,10 +9,10 @@ export default function NavBar() {
         <nav id="nav-bar" className={style["nav-bar"]}>
             <ul>
                 <li>
-                    <Link to="/">Accueil</Link>
+                    <Link to="/">Auberge</Link>
                 </li>
                 <li>
-                    <Link to="/game">Jeu</Link>
+                    <Link to="/playroom">Salle de jeu</Link>
                 </li>
                 <li>
                     <Link to="/profile">Profil</Link>

@@ -1,5 +1,9 @@
 @import "tailwindcss";
-@import "../../tailwind.custom.css";
+@import "../../../tailwind.custom.css";
+
+/*
+    TODO : Rendre la box clickable au lieu de juste le text !
+*/
 
 .burger-content
 {

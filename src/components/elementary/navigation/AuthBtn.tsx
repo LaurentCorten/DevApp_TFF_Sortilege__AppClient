@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { activeToken } from "../../atom/store";
+import { activeToken } from "../../../atom/store";
 import { useNavigate } from "react-router";
 import style from "./Navigation.module.css";
 import type { MouseEvent } from "react";
