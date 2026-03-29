@@ -1,8 +1,8 @@
-import logo from "../../../assets/images/logoSansFond.png";
+import logo from "../../assets/images/logoSansFond.png";
 import style from './Header.module.css';
 import { Link } from "react-router";
-import BurgerMenu from "../../elementary/navigation/Hamburger";
-import NavBar from "../../elementary/navigation/NavBar";
+import BurgerMenu from "./navigation/Hamburger";
+import NavBar from "./navigation/NavBar";
 
 // TODO : Changer le titre principale en "Die NachtSpeere" + tous les aménagements css qui vont avec ^^ 
 export default function Header() {

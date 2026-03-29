@@ -1,16 +1,12 @@
-import { useAtomValue } from "jotai";
-import { activeToken } from "../../../atom/store";
 import clsx from "clsx";
-import style from "./Arena.module.css";
+import style from "./Sortilege.module.css";
+import { Outlet } from "react-router";
 
 
-export default function ArenaPage() {
+export default function SortilegePage() {
 
-    const auth = useAtomValue(activeToken);
 
-    // if (!auth) {
-    //     return <Navigate to="/auth" replace />;
-    // }
+
 
 
     return (
@@ -18,7 +14,7 @@ export default function ArenaPage() {
             <section className={style["playroom-main-area"]}>
                 <h2>Sortilège</h2>
                 <div className={style["board-container"]}>
-                    <h3>Zone de Jeu</h3>
+                    <Outlet />
                 </div>
             </section>
             <aside className={clsx("big-screen-only", style["cheat-sheet-container"])}>

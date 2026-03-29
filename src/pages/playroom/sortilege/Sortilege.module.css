@@ -19,7 +19,7 @@
 
         .board-container
         {
-            @apply bg-teal-300 h-9/10 w-9/10 mb-8 place-self-center origin-center;
+            @apply bg-teal-300 h-9/10 w-9/10 mb-8 flex items-center justify-center;
         }
 
     }
