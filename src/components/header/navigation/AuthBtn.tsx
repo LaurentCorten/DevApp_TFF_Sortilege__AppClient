@@ -1,5 +1,5 @@
 import { useAtom } from "jotai";
-import { activeToken } from "../../../atom/store";
+import { accessToken } from "../../../atom/store";
 import { useNavigate } from "react-router";
 import style from "./Navigation.module.css";
 import type { MouseEvent } from "react";
@@ -7,7 +7,7 @@ import type { MouseEvent } from "react";
 
 export default function AuthBtn() {
 
-    const [auth, setAuth] = useAtom(activeToken);
+    const [auth, setAuth] = useAtom(accessToken);
     const navigate = useNavigate();
 
     const authBtnAction = (e: MouseEvent) => {

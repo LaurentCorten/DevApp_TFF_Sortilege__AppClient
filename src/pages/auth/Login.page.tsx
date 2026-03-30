@@ -5,7 +5,7 @@ import z from "zod";
 import type { LogMemberDto, MemberState } from "../../@types/member";
 import { PushLogin } from "../../services/auth/auth.service";
 import { useAtom } from "jotai";
-import { activeToken } from "../../atom/store";
+import { accessToken } from "../../atom/store";
 import style from "./Auth.module.css";
 
 const LogMemberScheme =
@@ -20,7 +20,7 @@ const LogMemberScheme =
 
 export default function LoginPage() {
 
-    const [token, setToken] = useAtom(activeToken);
+    const [token, setToken] = useAtom(accessToken);
 
     const loginAction = async (_state: MemberState, formData: FormData): Promise<MemberState> => {
 

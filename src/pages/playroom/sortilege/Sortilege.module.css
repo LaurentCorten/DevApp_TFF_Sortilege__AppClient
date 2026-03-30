@@ -6,7 +6,7 @@
 
 .playroom-container
 {
-    @apply bg-red-600 w-full h-full flex flex-row;
+    @apply w-full h-full flex flex-row;
 
     h2
     {
@@ -15,18 +15,18 @@
 
     .playroom-main-area
     {
-        @apply bg-sky-500/50 flex-1 h-full flex flex-col items-center;
+        @apply  bg-offwhite flex-1 h-full flex flex-col items-center;
 
         .board-container
         {
-            @apply bg-teal-300 h-9/10 w-9/10 mb-8 flex items-center justify-center;
+            @apply bg-myWood-800 h-9/10 w-9/10 mb-8 flex items-center justify-center border-2 border-black;
         }
 
     }
 
     .cheat-sheet-container
     {
-        @apply bg-amber-300/50 xl:w-90 2xl:w-125 h-full flex-col;
+        @apply bg-amber-900 xl:w-90 2xl:w-125 h-full flex-col;
     }
 
 }

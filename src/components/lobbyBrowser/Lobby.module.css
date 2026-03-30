@@ -4,17 +4,31 @@
 
 .enter-lobby-btn
 {
-    @apply bg-stone-700 text-white w-40 h-20;
-
-    &:hover
-    {
-        @apply bg-stone-500 text-hoverTxt; 
-    }
-
-
+    @apply w-40 h-20;
 }
 
 .lobby-container
 {
-    @apply bg-gray-600 text-amber-50 w-full md:w-187 h-8/10 mx-4;
+    @apply w-full md:w-187 h-8/10 mx-4;
 }
+
+.lobby-inner-frame
+{
+    @apply w-full h-full flex flex-col border border-myStone-800/60;
+}
+
+.roomList-container
+{
+    @apply w-full p-0 flex flex-1 flex-col overflow-scroll;
+}
+
+.room-container
+{
+    @apply w-full h-8 flex items-center justify-between;
+}
+.lobbyBtns-container
+{
+    @apply bg-amber-600/0 w-full p-4 flex justify-around;
+}
+
+

@@ -21,7 +21,7 @@ type LogMemberDto = {
     password: string,
 };
 
-export type OpenLobbyWindowType = (boolean) => void;
+
 
 
 
