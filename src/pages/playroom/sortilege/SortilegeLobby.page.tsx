@@ -1,4 +1,4 @@
-import Lobby from "../../../components/lobbyBrowser/Lobby";
+import Lobby from "../../../components/rooms/Lobby";
 
 
 

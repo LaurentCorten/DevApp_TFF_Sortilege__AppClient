@@ -9,6 +9,7 @@ export type MemberState = {
     } | null;
 };
 
+// TODO Check à quoi sert exactement le "export" vu que ça a l'aire de très bien s'exporter sans.
 type NewMemberDto = {
     nick: string;
     email: string;

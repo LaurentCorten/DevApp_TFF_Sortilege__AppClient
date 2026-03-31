@@ -27,7 +27,7 @@ const NewMemberScheme =
 // export type NewMemberData = z.infer<typeof NewMemberScheme>;
 //? Inutile jusqu'ici
 
-
+// Main function
 export default function RegisterPage() {
 
     // form Action

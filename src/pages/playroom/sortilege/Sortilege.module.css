@@ -19,7 +19,7 @@
 
         .board-container
         {
-            @apply bg-myWood-800 h-9/10 w-9/10 mb-8 flex items-center justify-center border-2 border-black;
+            @apply bg-myWood-800 h-9/10 w-9/10 mb-8 flex items-center justify-center border-2 border-black relative;
         }
 
     }

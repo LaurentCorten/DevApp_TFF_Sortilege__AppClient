@@ -3,7 +3,7 @@ import style from "./Lobby.module.css";
 import { useState } from "react";
 import { accessToken } from "../../atom/store";
 import { useNavigate } from "react-router";
-import type { OpenLobbyWindowType } from "../../@types/lobby";
+import type { OpenLobbyWindowType } from "../../@types/rooms";
 import clsx from "clsx";
 
 

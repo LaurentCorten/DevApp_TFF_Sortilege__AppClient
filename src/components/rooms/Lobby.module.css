@@ -9,7 +9,7 @@
 
 .lobby-container
 {
-    @apply w-full md:w-187 h-8/10 mx-4;
+    @apply w-full md:w-[min(80%, 750px)] h-8/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10;
 }
 
 .lobby-inner-frame
@@ -26,9 +26,14 @@
 {
     @apply w-full h-8 flex items-center justify-between;
 }
+
 .lobbyBtns-container
 {
     @apply bg-amber-600/0 w-full p-4 flex justify-around;
 }
 
+.new-room-form
+{
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20;
+}
 
