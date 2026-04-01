@@ -81,10 +81,10 @@ export default function RoomCreationForm({ closed, CloseForm }: RoomCreationForm
     const [state, handleSubmit, isPending] = useActionState(onNewRoomSubmit, { formData: null, error: null });
 
     return (
-        <form hidden={closed} className={clsx(style["newRoomForm-container"], "stone-panel")} action={handleSubmit}>
+        <form hidden={closed} className={clsx(style["newRoomForm-container"], "stone-panel-800")} action={handleSubmit}>
             <div className={style["newRoomInputs-container"]}>
                 <label htmlFor="name">Nom du salon : </label>
-                <input name="name" type="text" className="stone-bar" defaultValue={state.formData?.get("name")?.toString()} />
+                <input name="name" type="text" className="stone-input" defaultValue={state.formData?.get("name")?.toString()} />
                 {state.error?.name && <span>{state.error.name.join(", ")}</span>}
             </div>
             <div className={style["newRoomBtns-container"]}>

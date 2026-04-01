@@ -1,17 +1,41 @@
 @theme {
-    /* À voir si ça sera nécessaire. */
     
     /* --color-myblue: hsl(234, 70%, 39%);
     --color-mygreen: hsl(123, 61%, 47%); */
     --color-offwhite: hsl(45, 29%, 60%);
     --color-hoverTxt: hsl(237, 86%, 64%);
     
-    --color-myStone-700: hsl(0, 0%, 29%);
+    --color-myStone-700: hsl(0, 0%, 29%); /*#4a4a4a*/
     --color-myStone-800: hsl(0, 0%, 23%);
     --color-myStone-900: hsl(0, 0%, 12%);
-    --color-myWood-700: hsl(27, 39%, 30%);
-    --color-myWood-800: hsl(27, 40%, 25%);
-    --color-myWood-900: hsl(26, 40%, 17%);
-
+    --color-myWood-700: hsl(27, 39%, 30%); /*#6a4a2f*/
+    --color-myWood-800: hsl(27, 40%, 25%); /*#593d26*/
+    --color-myWood-900: hsl(26, 40%, 17%); /*#3d291a*/
+    --color-engraved: hsl(0, 0%, 78%);
     
+    
+    --background-image-lightWood: url("/src/assets/images/realistic-wooden-texture.jpg");
+    --background-image-wood: url("/src/assets/images/brown-natural-wood-background.jpg");
+    --background-image-stone1: url("/src/assets/images/asfalt-light-Atle Mo.png");
+    --background-image-stone2: url("/src/assets/images/black-felt-E.Van zummeren.png");
+    --background-image-stone3: url("/src/assets/images/prism.webp");
+    --background-image-stone4: url("/src/assets/images/cardboard-Atle Mo.png");
+    --background-image-stone5: url("/src/assets/images/clean-gray-paper-Paul Phönixweiß.png");
+    --background-image-stone6: url("/src/assets/images/concrete-wall-2.png");
+    --background-image-stone7: url("/src/assets/images/concrete-wall-3.png");
+    --background-image-stone8: url("/src/assets/images/dust-Dominik Kiss.png");
+    --background-image-stone9: url("/src/assets/images/mocha-grunge-Joel Klein.png");
+    --background-image-stone10: url("/src/assets/images/natural-paper-Mihaela Hinayon.png");
+    --background-image-stone11: url("/src/assets/images/paper-2.png");
+    --background-image-stone12: url("/src/assets/images/redox-01-Hendrik Lammers.png");
+    --background-image-stone13: url("/src/assets/images/redox-02-Hendrik Lammers.png");
+    --background-image-stone14: url("/src/assets/images/rocky-wall-Projecteightyfive.png");
+    
+    
+}
+ 
+
+@font-face {
+    font-family: "Fraktur";
+    src: url(./assets/fonts/gebetbuch-fraktur/GebetbuchFraktur.ttf);
 }

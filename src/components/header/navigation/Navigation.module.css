@@ -7,7 +7,7 @@
 
 .burger-content
 {
-    @apply bg-offwhite/85 h-lvh w-[67vw] absolute top-0 right-0 z-40 flex flex-col;
+    @apply bg-lightWood h-lvh w-[67vw] absolute top-0 right-0 z-40 flex flex-col;
 }
 
 .nav-bar
@@ -25,7 +25,7 @@
 
             &:hover
             {
-                @apply bg-offwhite/85 shadow-2xl;
+                @apply bg-gray-500/20 shadow-2xl border-b border-b-gray-400;
             }
         }
     }

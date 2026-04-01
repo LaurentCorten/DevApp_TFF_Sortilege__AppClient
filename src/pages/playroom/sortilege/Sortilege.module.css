@@ -15,18 +15,18 @@
 
     .playroom-main-area
     {
-        @apply  bg-offwhite flex-1 h-full flex flex-col items-center;
+        @apply  bg-blend-color-burn flex-1 h-full flex flex-col items-center bg-stone-400 bg-stone2 text-black;
 
         .board-container
         {
-            @apply bg-myWood-800 h-9/10 w-9/10 mb-8 flex items-center justify-center border-2 border-black relative;
+            @apply  h-9/10 w-9/10 mb-8 bg-wood bg-cover flex items-center justify-center border-2 border-myWood-800 relative text-engraved;
         }
 
     }
 
     .cheat-sheet-container
     {
-        @apply bg-amber-900 xl:w-90 2xl:w-125 h-full flex-col;
+        @apply xl:w-90 2xl:w-125 h-full bg-lightWood bg-cover p-4 xl:flex flex-col text-black;
     }
 
 }

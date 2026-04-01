@@ -16,9 +16,9 @@ export default function EnterLobbyBtn({ OpenLobbyWindow }: OpenLobbyWindowType) 
     const [isHidden, setIsHidden] = useState<boolean>(false);
 
     const EnterLobby = () => {
-        if (!auth) {
-            navigate('/auth');
-        }
+        // if (!auth) {
+        //     navigate('/auth');
+        // }
         setIsHidden(true);
         OpenLobbyWindow(true);
     };
