@@ -12,13 +12,13 @@ export default function EnterLobbyBtn({ OpenLobbyWindow }: OpenLobbyWindowType) 
     const auth = useAtomValue(accessToken);
     const navigate = useNavigate();
 
-    const BtnTxtContent = "LOBBY"
+    const BtnTxtContent = "LOBBY";
     const [isHidden, setIsHidden] = useState<boolean>(false);
 
     const EnterLobby = () => {
-        // if (!auth) {
-        //     navigate('/auth');
-        // }
+        if (!auth) {
+            navigate('/auth');
+        }
         setIsHidden(true);
         OpenLobbyWindow(true);
     };
@@ -27,5 +27,5 @@ export default function EnterLobbyBtn({ OpenLobbyWindow }: OpenLobbyWindowType) 
         <>
             <button type="button" hidden={isHidden} className={clsx(style["enter-lobby-btn"], "stone-btn")} onClick={() => EnterLobby()}>{BtnTxtContent}</button>
         </>
-    )
+    );
 }

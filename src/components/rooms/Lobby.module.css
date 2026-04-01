@@ -9,7 +9,7 @@
 
 .lobby-container
 {
-    @apply w-full md:w-[min(80%, 750px)] h-8/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10;
+    @apply w-full md:w-187 md:max-w-9/10 h-8/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10;
 }
 
 .lobby-inner-frame
@@ -29,11 +29,25 @@
 
 .lobbyBtns-container
 {
-    @apply bg-amber-600/0 w-full p-4 flex justify-around;
+    @apply w-full p-4 flex justify-around;
 }
 
-.new-room-form
+.newRoomForm-container
 {
-    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20;
+    @apply min-w-72.5 w-93 max-w-full h-45 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 py-4 flex flex-col justify-between;
 }
 
+.newRoomInputs-container
+{
+    @apply w-full flex flex-col;
+}
+
+.newRoomBtns-container
+{
+    @apply w-full flex flex-row justify-around;
+}
+
+.newRoomForm-btn
+{
+    @apply h-10.5 w-34
+}
