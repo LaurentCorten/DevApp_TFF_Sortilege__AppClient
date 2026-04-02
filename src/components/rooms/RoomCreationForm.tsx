@@ -3,7 +3,7 @@ import z from "zod";
 import type { RoomCreationFormProps, RoomState } from "../../@types/rooms";
 import clsx from "clsx";
 import style from "./Lobby.module.css";
-import { PushNewRoom } from "../../services/lobby/lobby.service";
+import { PushNewRoom } from "../../services/lobby/lobby.controllers.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { useAtomValue } from "jotai";

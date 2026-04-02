@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { } from '../../@types/rooms';
+// import type { } from '../../@types/rooms';
 import { accessToken, store } from "../../atom/store";
 
 const API_URL = import.meta.env.VITE_API_URL;
