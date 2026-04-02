@@ -1,4 +1,4 @@
-export type MemberState = {
+export interface MemberState {
     formData: FormData | null,
     error: {
         nick?: string[];
@@ -9,15 +9,15 @@ export type MemberState = {
     } | null;
 };
 
-// TODO Check à quoi sert exactement le "export" vu que ça a l'aire de très bien s'exporter sans.
-type NewMemberDto = {
+// TODO Check à quoi sert exactement le "export" vu que ça a l'air de très bien s'exporter sans.
+export interface NewMemberDto {
     nick: string;
     email: string;
     password: string;
 };
 
 
-type LogMemberDto = {
+export interface LogMemberDto {
     emailAddress: string,
     password: string,
 };

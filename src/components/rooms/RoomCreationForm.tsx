@@ -1,6 +1,6 @@
 import { useActionState } from "react";
 import z from "zod";
-import type { RoomCreationFormProps, RoomState } from "../../@types/rooms";
+import type { NewRoomFormProps, NewRoomState } from "../../@types/rooms";
 import clsx from "clsx";
 import style from "./Lobby.module.css";
 import { PushNewRoom } from "../../services/lobby/lobby.controllers.service";
@@ -22,14 +22,14 @@ const NewRoomScheme =
 
 
 // Main Function
-export default function RoomCreationForm({ closed, CloseForm }: RoomCreationFormProps) {
+export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
 
     console.log(`closed = ${closed}`);
     const auth = useAtomValue(accessToken);
     const navigate = useNavigate();
 
     // Handle form action submit
-    const onNewRoomSubmit = async (_state: RoomState, formData: FormData): Promise<RoomState> => {
+    const onNewRoomSubmit = async (_state: NewRoomState, formData: FormData): Promise<NewRoomState> => {
         if (!auth) {
             navigate('/auth');
         }

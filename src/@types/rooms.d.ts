@@ -1,7 +1,8 @@
+import type { ZodGUID } from "zod";
 
-export type OpenLobbyWindowType = { OpenLobbyWindow: (response: boolean) => void, };
+export interface OpenLobbyWindowType { OpenLobbyWindow: (response: boolean) => void, };
 
-export type RoomState = {
+export interface NewRoomState {
     formData: FormData | null,
     error: {
         name?: string[];
@@ -9,8 +10,16 @@ export type RoomState = {
     } | null
 };
 
-export type RoomCreationFormProps = {
+export interface NewRoomFormProps {
     closed: boolean,
     CloseForm: () => void;
+}
+
+export interface Room {
+    Id: ZodGUID;
+    Name: string;
+    CreatorId: ZodGUID;
+    GuestId?: ZodGUID | null;
+    CreationDate: Date;
 }
 

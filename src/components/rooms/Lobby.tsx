@@ -3,7 +3,7 @@ import EnterLobbyBtn from "./EnterLobbyBtn";
 import clsx from "clsx";
 import style from "./Lobby.module.css";
 import GenericAuthorizedBtn from "../shared/GenericBtn";
-import RoomCreationForm from "./RoomCreationForm";
+import NewRoomForm from "./RoomCreationForm";
 
 
 export default function Lobby() {
@@ -60,7 +60,7 @@ export default function Lobby() {
                 </div>
             </section>
 
-            <RoomCreationForm closed={isRoomFormClose} CloseForm={handleCancelCreateBtn} />
+            <NewRoomForm closed={isRoomFormClose} CloseForm={handleCancelCreateBtn} />
 
 
         </>
