@@ -11,7 +11,7 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import SortilegePage from "./pages/playroom/sortilege/Sortilege.page";
 import SortilegeLobbyPage from "./pages/playroom/sortilege/SortilegeLobby.page";
-import SortilegeGamePage from "./pages/playroom/sortilege/SortilegeGamePage";
+import SortilegeGamePage from "./pages/playroom/sortilege/SortilegeGame.page";
 
 function App() {
 

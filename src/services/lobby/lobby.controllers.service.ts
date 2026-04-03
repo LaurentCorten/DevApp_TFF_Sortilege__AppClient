@@ -1,5 +1,4 @@
-import axios, { type AxiosResponse } from 'axios';
-// import type { } from '../../@types/rooms';
+import axios from 'axios';
 import { accessToken, store } from "../../atom/store";
 import type { Room } from "../../@types/lobby";
 import type { ServiceResult } from "../../@types/global";

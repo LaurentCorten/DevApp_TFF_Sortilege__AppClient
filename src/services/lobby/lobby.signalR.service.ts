@@ -1,5 +1,5 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
-import type { LobbyActionType } from "../../@types/global";
+import type { LobbyActionType } from "../../@types/lobby";
 import React from "react";
 
 
@@ -29,6 +29,8 @@ export class LobbySignalRService {
         this._lobbyConnection?.on("UserConnected", () => {
             console.log("Connexion au roomHub établie");
         })
+
+        console.log(this._dispach);
 
         // // "Suscribe" to newRooms broadcast to catch newly added rooms
         // this._lobbyConnection?.on("ReceiveNewRoom", (newRoom: Room) => {

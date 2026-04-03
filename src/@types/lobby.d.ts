@@ -26,11 +26,11 @@ export type NewRoomFormProps = {
 }
 
 export type Room = {
-    Id: string;
-    Name: string;
-    CreatorId: string;
-    GuestId?: string | null;
-    CreationDate: string;
+    id: string;
+    name: string;
+    creatorId: string;
+    guestId?: string | null;
+    creationDate: string;
 }
 
 export type RoomsListPropsType = {
