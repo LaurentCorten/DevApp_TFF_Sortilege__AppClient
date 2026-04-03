@@ -1,16 +1,20 @@
-import type { ReactNode } from "react";
+import type { LobbyStateType } from "./lobby";
 
-export interface GenericAuthorizedBtnPropsType {
+export type GenericAuthorizedBtnPropsType = {
     btnTxtContent: string,
     btnClass: string,
     ConfirmClick: () => void,
 };
 
-export interface Action {
-    type: string;
-    payload: any;
+export type GlobalStatePropsType = {
+    children: React.ReactNode;
 }
 
-export interface GlobalStateProps {
-    children: ReactNode;
+export type GlobalStateContextType = {
+    lobbyState: LobbyStateType;
+    lobbyDispatch: React.Dispatch<LobbyActionType>;
 }
+
+export type ServiceResult<T> =
+    | { success: true; data: T }
+    | { success: false; error: string };

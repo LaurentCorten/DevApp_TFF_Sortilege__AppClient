@@ -1,6 +1,6 @@
 import { useActionState } from "react";
 import z from "zod";
-import type { NewRoomFormProps, NewRoomState } from "../../@types/rooms";
+import type { NewRoomFormProps, NewRoomState } from "../../@types/lobby";
 import clsx from "clsx";
 import style from "./Lobby.module.css";
 import { PushNewRoom } from "../../services/lobby/lobby.controllers.service";

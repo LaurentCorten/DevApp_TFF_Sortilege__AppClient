@@ -1,38 +1,43 @@
-import React, { createContext, useReducer } from "react";
-import type { LobbySignalRState } from "../@types/signalR";
-import type { Action, GlobalStateProps } from "../@types/global";
-import { lobbySignalRConnectionReducer } from "./Reducer";
+import { createContext, useContext, useReducer } from "react";
+import type { LobbyStateType } from "../@types/lobby";
+import type { GlobalStateContextType, GlobalStatePropsType } from "../@types/global";
+import { lobbyReducer } from "./Reducer";
 import { LobbySignalRService } from "../services/lobby/lobby.signalR.service";
 
 
 
-const initialLobbySignalRStatus: LobbySignalRState = {
+const initialLobbyState: LobbyStateType = {
     lobbySignalRService: null,
     avalaibleRooms: []
 }
 
-export const GlobaleContext = createContext<{
-    lobbySignalRState: LobbySignalRState;
-    lobbySignalRDispatch: React.Dispatch<Action>;
-}>({
-    lobbySignalRState: initialLobbySignalRStatus,
-    lobbySignalRDispatch: () => undefined
-});
+export const GlobaleStateContext = createContext<GlobalStateContextType | undefined>(undefined);
 
+// Custom hook to consume the GlobalStateContext avoiding silent error 
+export function useGlobalState(): GlobalStateContextType {
+    const context = useContext(GlobaleStateContext);
 
-const GlobalState: React.FC<GlobalStateProps> = ({ children }) => {
+    // Gard to avoid using that hook outside of the provider
+    if (context === undefined) {
+        throw new Error("useGlobalState must be used within a GlobalStateProvider");
+    }
 
-    const [lobbySignalRState, lobbySignalRDispatch] = useReducer(lobbySignalRConnectionReducer, initialLobbySignalRStatus)
+    return context;
+}
+
+export function GlobalStateProvider({ children }: GlobalStatePropsType) {
+
+    const [lobbyState, lobbyDispatch] = useReducer(lobbyReducer, initialLobbyState)
 
     const startLobbySignalRConnection = () => { // TODO : à mettre en action mnt !
-        const lobbySignalRService = new LobbySignalRService(lobbySignalRDispatch);
+        const lobbySignalRService = new LobbySignalRService(lobbyDispatch);
         lobbySignalRService.createLobbyConnection();
-        lobbySignalRDispatch({ type: "SET_LOBBY_SIGNALR_SERVICE", payload: lobbySignalRService });
+        lobbyDispatch({ type: "SET_LOBBY_SIGNALR_SERVICE", payload: lobbySignalRService });
     }
 
     return (
-        <GlobaleContext.Provider value={{ lobbySignalRState, lobbySignalRDispatch }}>{children}</GlobaleContext.Provider>
+        <GlobaleStateContext.Provider value={{ lobbyState, lobbyDispatch }}>
+            {children}
+        </GlobaleStateContext.Provider>
     )
 }
-
-export default GlobalState;

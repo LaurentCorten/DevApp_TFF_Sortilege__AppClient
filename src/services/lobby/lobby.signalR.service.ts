@@ -1,5 +1,5 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
-import type { Action } from "../../@types/global";
+import type { LobbyActionType } from "../../@types/global";
 import React from "react";
 
 
@@ -8,8 +8,11 @@ const API_URL = import.meta.env.VITE_API_URL;
 export class LobbySignalRService {
 
     private _lobbyConnection?: HubConnection;
+    private _dispach: React.Dispatch<LobbyActionType>;
 
-    constructor(private dispach: React.Dispatch<Action>) { } //TODO : trouver WTF !?
+    constructor(dispach: React.Dispatch<LobbyActionType>) {
+        this._dispach = dispach;
+    }
 
     createLobbyConnection() {
 

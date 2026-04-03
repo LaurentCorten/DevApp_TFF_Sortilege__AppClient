@@ -1,21 +1,55 @@
-import axios from 'axios';
+import axios, { type AxiosResponse } from 'axios';
 // import type { } from '../../@types/rooms';
 import { accessToken, store } from "../../atom/store";
+import type { Room } from "../../@types/lobby";
+import type { ServiceResult } from "../../@types/global";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 
 
-export async function PushNewRoom(name: string) {
-
+export async function PushNewRoom(name: string): Promise<ServiceResult<Room>> {
 
     const token = store.get(accessToken);
     let result;
 
     try {
-        result = await axios.post(
+        result = await axios.post<Room>(
             '/Room',
             { roomName: name },
+            {
+                baseURL: API_URL,
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+    } catch (error: any) {
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);
+
+        return {
+            success: false,
+            error: msg ?? error.message
+        };
+    }
+
+    console.log(result);
+
+    return {
+        success: true,
+        data: result.data
+    };
+}
+
+export async function PullRoomsList(): Promise<ServiceResult<Room[]>> {
+
+    const token = store.get(accessToken);
+    let result;
+
+    try {
+        result = await axios.get<Room[]>(
+            '/Room',
             {
                 baseURL: API_URL,
                 headers: {
