@@ -23,7 +23,7 @@ const NewRoomScheme =
 
 
 // Main Function
-export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
+export default function NewRoomForm({ closed, CloseForm, OpenRoom }: NewRoomFormProps) {
 
     const { lobbyState } = useGlobalState();
 
@@ -70,6 +70,8 @@ export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
 
         if (result.success) {
             toast.success(`Room ${result.data.id} bien crée !`);
+            CloseForm();
+            OpenRoom(result.data.id);
 
             return {
                 formData: null,
@@ -91,6 +93,8 @@ export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
     // Handle Cancel
     const onCancelClick = () => {
         CloseForm();
+        state.formData = null;
+        state.error = null;
     };
 
 
@@ -104,8 +108,8 @@ export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
                 {state.error?.name && <span>{state.error.name.join(", ")}</span>}
             </div>
             <div className={style["newRoomBtns-container"]}>
-                <button disabled={isPending} className={clsx(style['newRoomForm-btn'], "stone-btn")} type='submit'>Créer le salon</button>
-                <button disabled={isPending} className={clsx(style['newRoomForm-btn'], "stone-btn")} type="button" onClick={onCancelClick} >Annuler</button>
+                <button disabled={isPending} className={clsx(style['lobby-btn'], "stone-btn")} type='submit'>Créer le salon</button>
+                <button disabled={isPending} className={clsx(style['lobby-btn'], "stone-btn")} type="button" onClick={onCancelClick} >Annuler</button>
             </div>
             {state.error?.server && (<span>{state.error.server}</span>)}
         </form>

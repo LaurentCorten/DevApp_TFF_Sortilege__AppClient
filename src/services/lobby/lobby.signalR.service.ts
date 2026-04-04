@@ -5,7 +5,7 @@ import type { ConnectionResult } from "../../@types/signalR";
 import { toast } from "sonner";
 
 
-const API_URL = import.meta.env.VITE_API_URL;
+const HUB_URL = import.meta.env.VITE_HUB_URL;
 
 export class LobbySignalRService {
 
@@ -21,7 +21,7 @@ export class LobbySignalRService {
 
         // Define the connection
         this._lobbyConnection = new HubConnectionBuilder()
-            .withUrl(API_URL + "/lobbyhub")
+            .withUrl(HUB_URL + "/lobbyhub")
             .withAutomaticReconnect()
             .build();
 

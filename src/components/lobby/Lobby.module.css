@@ -12,22 +12,17 @@
     @apply w-full md:w-187 md:max-w-9/10 h-8/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10;
 }
 
-.lobby-inner-frame
-{
-    @apply w-full h-full flex flex-col border border-myStone-800/60;
-}
-
 .roomList-container
 {
     @apply w-full p-0 flex flex-1 flex-col overflow-scroll;
 }
 
-.room-container
+.room-bar
 {
     @apply w-full h-8 flex items-center justify-between;
 }
 
-.lobbyBtns-container
+.lobby-btns-container
 {
     @apply w-full p-4 flex justify-around;
 }
@@ -47,7 +42,17 @@
     @apply w-full flex flex-row justify-around;
 }
 
-.newRoomForm-btn
+.lobby-btn
 {
-    @apply h-10.5 w-34
+    @apply h-10.5 w-34;
+}
+
+.room-container
+{
+    @apply w-full md:w-187 md:max-w-9/10 h-8/10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20;
+}
+
+.room-content-container
+{
+    @apply w-full p-0 flex flex-1 flex-col;
 }

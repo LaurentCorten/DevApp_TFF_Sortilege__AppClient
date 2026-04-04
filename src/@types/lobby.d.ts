@@ -27,6 +27,7 @@ export type NewRoomState = {
 export type NewRoomFormProps = {
     closed: boolean,
     CloseForm: () => void;
+    OpenRoom: (string) => void;
 }
 
 export type Room = {
@@ -40,3 +41,8 @@ export type Room = {
 export type RoomsListPropsType = {
     hasEnterLobby: boolean;
 }
+
+export type RoomProps = {
+    closed: boolean,
+    roomId: string
+};

@@ -4,16 +4,18 @@ export type GenericAuthorizedBtnPropsType = {
     btnTxtContent: string,
     btnClass: string,
     ConfirmClick: () => void,
+    isHidden: boolean,
+    isDisabled: boolean
 };
 
 export type GlobalStatePropsType = {
-    children: React.ReactNode;
-}
+    children: React.ReactNode
+};
 
 export type GlobalStateContextType = {
-    lobbyState: LobbyStateType;
-    lobbyDispatch: React.Dispatch<LobbyActionType>;
-}
+    lobbyState: LobbyStateType,
+    lobbyDispatch: React.Dispatch<LobbyActionType>
+};
 
 export type ServiceResult<T> =
     | { success: true; data: T }
