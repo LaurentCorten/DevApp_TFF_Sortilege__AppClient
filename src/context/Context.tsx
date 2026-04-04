@@ -8,7 +8,7 @@ import { LobbySignalRService } from "../services/lobby/lobby.signalR.service";
 
 const initialLobbyState: LobbyStateType = {
     lobbySignalRService: null,
-    avalaibleRooms: []
+    availableRooms: []
 }
 
 export const GlobaleStateContext = createContext<GlobalStateContextType | undefined>(undefined);

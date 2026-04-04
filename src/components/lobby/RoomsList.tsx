@@ -30,7 +30,7 @@ export default function RoomsList({ hasEnterLobby }: RoomsListPropsType) {
 
     return (
         <>
-            {lobbyState.avalaibleRooms.map((room) => (
+            {lobbyState.availableRooms.map((room) => (
                 <p key={room.id} className={clsx(style["room-container"], "stone-bar")}>
                     <span>{room.name}</span>|<span>{room.creatorId}</span>
                     {hasFailed && (<span>Erreur de Chargement, veuillez recharger la page.</span>)}

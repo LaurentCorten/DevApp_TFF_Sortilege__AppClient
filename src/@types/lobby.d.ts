@@ -5,12 +5,16 @@ export type OpenLobbyWindowType = { OpenLobbyWindow: (response: boolean) => void
 
 export type LobbyStateType = {
     lobbySignalRService: LobbySignalRService | null;
-    avalaibleRooms: Room[];
+    availableRooms: Room[];
 }
 
 export type LobbyActionType =
     | { type: 'SET_LOBBY_SIGNALR_SERVICE'; payload: LobbySignalRService; }
     | { type: "SET_ROOMS_LIST", payload: Room[]; }
+    | { type: "ROOM_CREATED", payload: Room; }
+    | { type: "ROOM_DELETED", payload: string; }
+    | { type: "ROOM_UPDATED", payload: Room }
+
 
 export type NewRoomState = {
     formData: FormData | null,
