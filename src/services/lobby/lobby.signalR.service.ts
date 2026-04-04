@@ -1,6 +1,8 @@
 import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
-import type { LobbyActionType } from "../../@types/lobby";
+import type { LobbyActionType, Room } from "../../@types/lobby";
 import React from "react";
+import type { ConnectionResult } from "../../@types/signalR";
+import { toast } from "sonner";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -8,36 +10,52 @@ const API_URL = import.meta.env.VITE_API_URL;
 export class LobbySignalRService {
 
     private _lobbyConnection?: HubConnection;
-    private _dispach: React.Dispatch<LobbyActionType>;
+    private _dispatch: React.Dispatch<LobbyActionType>;
 
-    constructor(dispach: React.Dispatch<LobbyActionType>) {
-        this._dispach = dispach;
+    constructor(dispatch: React.Dispatch<LobbyActionType>) {
+        this._dispatch = dispatch;
     }
 
-    createLobbyConnection() {
+    // Establish the base connection with SignalR lobbyHub and the listening channels for the lobbyRooms
+    async createLobbyConnection(): Promise<ConnectionResult> {
 
         // Define the connection
         this._lobbyConnection = new HubConnectionBuilder()
-            .withUrl(API_URL + "/roomhub")
+            .withUrl(API_URL + "/lobbyhub")
             .withAutomaticReconnect()
             .build();
 
         // Establish the connection
-        this._lobbyConnection?.start().catch(error => console.log(error));
+        try {
+            await this._lobbyConnection.start()
+        } catch (error) {
+            this._lobbyConnection = undefined;
+            return { success: false, error: "Echec de connexion au lobbyHub, veuillez refresh la page !" };
+        }
 
-
-        this._lobbyConnection?.on("UserConnected", () => {
-            console.log("Connexion au roomHub établie");
+        // Ping to confirm connection
+        this._lobbyConnection?.on("LobbyJoined", () => {
+            toast.success("Connexion au lobbyHub établie");
         })
 
-        console.log(this._dispach);
+        // Listen for incoming broadcasts from the back
+        this._lobbyConnection.on("RoomCreated", (room: Room) => {
+            this._dispatch({ type: "ROOM_CREATED", payload: room });
+        });
+        this._lobbyConnection.on("RoomDeleted", (roomId: string) => {
+            this._dispatch({ type: "ROOM_DELETED", payload: roomId });
+        });
+        this._lobbyConnection.on("RoomUpdated", (room: Room) => {
+            this._dispatch({ type: "ROOM_UPDATED", payload: room });
+        });
 
-        // // "Suscribe" to newRooms broadcast to catch newly added rooms
-        // this._lobbyConnection?.on("ReceiveNewRoom", (newRoom: Room) => {
-        //     return newRoom;
-        // })
+        return { success: true }
     }
 
+    // Returns the active SignalR connection ID, null if not connected
+    getConnectionId(): string | null {
+        return this._lobbyConnection?.connectionId ?? null;
+    }
 
 }
 

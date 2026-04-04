@@ -5,9 +5,41 @@ import type { ServiceResult } from "../../@types/global";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+export async function JoinLobby(connectionId: string): Promise<ServiceResult<void>> {
 
+    const token = store.get(accessToken);
+    let result;
 
-export async function PushNewRoom(name: string): Promise<ServiceResult<Room>> {
+    try {
+        result = await axios.post(
+            '/lobby',
+            JSON.stringify(connectionId),
+            {
+                baseURL: API_URL,
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+    } catch (error: any) {
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);
+
+        return {
+            success: false,
+            error: msg ?? error.message
+        };
+    }
+    console.log(result);
+
+    return {
+        success: true,
+        data: result.data
+    };
+}
+
+export async function PushNewRoom(name: string, connectionId: string): Promise<ServiceResult<Room>> {
 
     const token = store.get(accessToken);
     let result;
@@ -15,7 +47,7 @@ export async function PushNewRoom(name: string): Promise<ServiceResult<Room>> {
     try {
         result = await axios.post<Room>(
             '/Room',
-            { roomName: name },
+            { roomName: name, connectionId: connectionId },
             {
                 baseURL: API_URL,
                 headers: {

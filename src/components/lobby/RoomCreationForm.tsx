@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { useAtomValue } from "jotai";
 import { accessToken } from "../../atom/store";
+import { useGlobalState } from "../../context/Context";
 
 
 
@@ -23,6 +24,8 @@ const NewRoomScheme =
 
 // Main Function
 export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
+
+    const { lobbyState } = useGlobalState();
 
     console.log(`closed = ${closed}`);
     const auth = useAtomValue(accessToken);
@@ -46,8 +49,21 @@ export default function NewRoomForm({ closed, CloseForm }: NewRoomFormProps) {
             };
         }
 
+        // Get ConnectionId
+        const connectionId = lobbyState.lobbySignalRService?.getConnectionId();
+
+        // SignalR not connected — should not happen here but guard anyway
+        if (!connectionId) {
+            return {
+                formData,
+                error: {
+                    server: "Erreur de Connexion à SignalR, veuillez refresh la page !"
+                }
+            };
+        }
+
         // Service calling
-        const result = await PushNewRoom(data.name);
+        const result = await PushNewRoom(data.name, connectionId);
 
         // Check dev
         console.log(data, result);

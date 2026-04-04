@@ -29,11 +29,7 @@ export function GlobalStateProvider({ children }: GlobalStatePropsType) {
 
     const [lobbyState, lobbyDispatch] = useReducer(lobbyReducer, initialLobbyState)
 
-    const startLobbySignalRConnection = () => { // TODO : à mettre en action mnt !
-        const lobbySignalRService = new LobbySignalRService(lobbyDispatch);
-        lobbySignalRService.createLobbyConnection();
-        lobbyDispatch({ type: "SET_LOBBY_SIGNALR_SERVICE", payload: lobbySignalRService });
-    }
+
 
     return (
         <GlobaleStateContext.Provider value={{ lobbyState, lobbyDispatch }}>

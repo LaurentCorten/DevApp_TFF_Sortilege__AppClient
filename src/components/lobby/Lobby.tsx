@@ -5,7 +5,36 @@ import style from "./Lobby.module.css";
 import GenericAuthorizedBtn from "../shared/GenericBtn";
 import NewRoomForm from "./RoomCreationForm";
 import RoomsList from "./RoomsList";
+import { LobbySignalRService } from "../../services/lobby/lobby.signalR.service";
+import { toast } from "sonner";
+import { JoinLobby } from "../../services/lobby/lobby.controllers.service";
+import { useGlobalState } from "../../context/Context";
 
+const ConnectLobby = async () => {
+    const { lobbyDispatch } = useGlobalState();
+
+
+    // 1. Start the SignalR connection
+    const lobbySignalRService = new LobbySignalRService(lobbyDispatch);
+    const connectionResult = await lobbySignalRService.createLobbyConnection();
+    if (!connectionResult.success) {
+        toast.error(connectionResult.error);
+        return;
+    }
+
+    // 2. Join the global lobby SignalR group
+    const connectionId = lobbySignalRService.getConnectionId();
+    if (connectionId) {
+        const joinResult = await JoinLobby(connectionId);
+        if (!joinResult.success) {
+            toast.error(joinResult.error);
+            return;
+        }
+    }
+
+    // 3. Store the service instance in lobby state
+    lobbyDispatch({ type: "SET_LOBBY_SIGNALR_SERVICE", payload: lobbySignalRService });
+}
 
 export default function Lobby() {
 
@@ -13,8 +42,9 @@ export default function Lobby() {
     const [isRoomFormClose, setIsRoomFormClose] = useState(true);
 
 
-    const HandleEnterBtn = (response: boolean) => {
+    const handleEnterBtn = (response: boolean) => {
         setHasEnterLobby(response);
+        ConnectLobby();
 
 
     };
@@ -33,7 +63,7 @@ export default function Lobby() {
 
     return (
         <>
-            <EnterLobbyBtn OpenLobbyWindow={HandleEnterBtn} />
+            <EnterLobbyBtn OpenLobbyWindow={handleEnterBtn} />
 
             <section id="room-browser" hidden={!hasEnterLobby} className={clsx(style["lobby-container"], "stone-panel-800")}>
                 <div className={clsx(style["lobby-inner-frame"])}>
