@@ -10,14 +10,15 @@ export const memberReducer = (state: MemberState, action: MemberAction): MemberS
                 member: action.payload
             };
         case "SET_ACCESS_TOKEN":
+            localStorage.clear(); // Peut-être à changer pour remove quand il y aura le refresh avec. À voir.
+            localStorage.setItem("accessToken", action.payload);
             return {
                 ...state,
                 accessToken: action.payload
             };
 
-
-
         case "LOG_MEMBER_OUT":
+            localStorage.clear();
             return {
                 member: null,
                 accessToken: ""

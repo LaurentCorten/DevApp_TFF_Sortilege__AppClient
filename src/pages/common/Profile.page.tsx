@@ -1,11 +1,11 @@
-import { useAtomValue } from "jotai";
-import { accessToken } from "../../atom/store";
 import { Navigate } from "react-router";
+import { useGlobalState } from "../../context/Context";
 
 
 export default function ProfilePage() {
 
-    const auth = useAtomValue(accessToken);
+    const { memberState } = useGlobalState();
+    const auth = memberState.accessToken;
 
     if (!auth) {
         return <Navigate to="/auth" replace />;

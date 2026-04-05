@@ -7,12 +7,12 @@ import style from "./Lobby.module.css";
 
 
 
-export default function RoomsList({ hasEnterLobby }: RoomsListPropsType) {
+export default function RoomsList({ hasEnterLobby, onclickRoomBar, selectedRoomId }: RoomsListPropsType) {
     const { lobbyState, lobbyDispatch, memberState } = useGlobalState();
     const [hasFailed, setHasFailed] = useState(false);
 
     useEffect(() => {
-        // Gard if lobby not open yet
+        // Guard if lobby not open yet
         if (!hasEnterLobby) return;
 
         const fetchRoomsList = async () => {
@@ -30,12 +30,15 @@ export default function RoomsList({ hasEnterLobby }: RoomsListPropsType) {
 
     return (
         <>
-            {lobbyState.availableRooms.map((room) => (
-                <p key={room.id} className={clsx(style["room-container"], "stone-bar")}>
-                    <span>{room.name}</span>|<span>{room.creatorId}</span>
-                    {hasFailed && (<span>Erreur de Chargement, veuillez recharger la page.</span>)}
-                </p>
-            ))}
+            {lobbyState.availableRooms
+                .filter(room => room.guestId === null)
+                .map((room) => (
+                    <p key={room.id} className={clsx(style["room-bar"], "stone-bar", selectedRoomId === room.id && style["room-bar--selected"])} onClick={() => onclickRoomBar(room.id)}>
+                        <span>{room.name}</span>|<span>{room.creatorId}</span>
+                        {hasFailed && (<span>Erreur de Chargement, veuillez recharger la page.</span>)}
+                    </p>
+                ))
+            }
         </>
     );
 }

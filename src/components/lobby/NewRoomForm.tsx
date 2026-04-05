@@ -6,7 +6,6 @@ import style from "./Lobby.module.css";
 import { PushNewRoom } from "../../services/lobby/lobby.controllers.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
-import { useAtomValue } from "jotai";
 import { useGlobalState } from "../../context/Context";
 
 
@@ -25,17 +24,14 @@ const NewRoomScheme =
 export default function NewRoomForm({ closed, CloseForm, OpenRoom }: NewRoomFormProps) {
 
     const { lobbyState, memberState } = useGlobalState();
-
-    console.log(`closed = ${closed}`);
-    const auth = memberState.accessToken;
+    const accessToken = memberState.accessToken;
     const navigate = useNavigate();
 
     // Handle form action submit
     const onNewRoomSubmit = async (_state: NewRoomState, formData: FormData): Promise<NewRoomState> => {
-        if (!auth) {
+        if (!accessToken) {
             navigate('/auth');
         }
-
 
         //data validation w. zod
         const { data, error, success } = await NewRoomScheme.safeParseAsync(Object.fromEntries(formData.entries()));
@@ -62,7 +58,7 @@ export default function NewRoomForm({ closed, CloseForm, OpenRoom }: NewRoomForm
         }
 
         // Service calling
-        const result = await PushNewRoom(data.name, connectionId);
+        const result = await PushNewRoom(data.name, connectionId, accessToken);
 
         // Check dev
         console.log(data, result);

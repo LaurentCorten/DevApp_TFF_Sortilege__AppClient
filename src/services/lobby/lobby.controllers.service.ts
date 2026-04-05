@@ -101,3 +101,100 @@ export async function PullRoomsList(accessToken: string): Promise<ServiceResult<
         data: result.data
     };
 }
+
+export async function JoinRoom(roomId: string, connectionId: string, accessToken: string): Promise<ServiceResult<Room>> {
+
+    let result;
+
+    try {
+        result = await axios.put<Room>(
+            '/Room/join',
+            { roomId: roomId, connectionId: connectionId },
+            {
+                baseURL: API_URL,
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+        );
+    } catch (error: any) {
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);
+
+        return {
+            success: false,
+            error: msg ?? error.message
+        };
+    }
+
+    console.log(result);
+
+    return {
+        success: true,
+        data: result.data
+    };
+}
+
+export async function LeaveRoom(roomId: string, connectionId: string, accessToken: string): Promise<ServiceResult<Room>> {
+
+    let result;
+
+    try {
+        result = await axios.put<Room>(
+            '/Room/leave',
+            { roomId: roomId, connectionId: connectionId },
+            {
+                baseURL: API_URL,
+                headers: {
+                    Authorization: `Bearer ${accessToken}`
+                }
+            }
+        );
+    } catch (error: any) {
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);
+
+        return {
+            success: false,
+            error: msg ?? error.message
+        };
+    }
+
+    console.log(result);
+
+    return {
+        success: true,
+        data: result.data
+    };
+}
+
+export async function DeleteRoom(roomId: string, connectionId: string, accessToken: string): Promise<ServiceResult<void>> {
+
+    let result;
+
+    try {
+        result = await axios.delete(
+            '/Room/delete',
+            {
+                baseURL: API_URL,
+                headers: { Authorization: `Bearer ${accessToken}` },
+                data: { roomId: roomId, connectionId: connectionId }
+            }
+        );
+    } catch (error: any) {
+        const msg = error.response.data;
+        console.log(`msg = ${msg}`);
+
+        return {
+            success: false,
+            error: msg ?? error.message
+        };
+    }
+
+    console.log(result);
+
+    return {
+        success: true,
+        data: result.data
+    };
+}

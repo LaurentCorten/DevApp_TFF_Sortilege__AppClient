@@ -1,12 +1,12 @@
-import { useAtomValue } from "jotai";
 import { useNavigate } from "react-router";
-import { accessToken } from "../../atom/store";
 import type { GenericAuthorizedBtnPropsType } from "../../@types/global";
+import { useGlobalState } from "../../context/Context";
 
 
 export default function GenericAuthorizedBtn({ btnTxtContent, btnClass, ConfirmClick, isHidden, isDisabled }: GenericAuthorizedBtnPropsType) {
 
-    const auth = useAtomValue(accessToken);
+    const { memberState } = useGlobalState();
+    const auth = memberState.accessToken;
     const navigate = useNavigate();
 
 

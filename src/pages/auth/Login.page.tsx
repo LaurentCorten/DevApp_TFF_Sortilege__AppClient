@@ -43,7 +43,6 @@ export default function LoginPage() {
             toast.success(result.data.message);
             memberDispatch({ type: "SET_MEMBER", payload: result.data.member });
             memberDispatch({ type: "SET_ACCESS_TOKEN", payload: result.data.token });
-            localStorage.setItem("accessToken", result.data.token);
 
             return {
                 formData: null,

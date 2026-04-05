@@ -22,7 +22,7 @@ export class LobbySignalRService {
         // Define the connection
         this._lobbyConnection = new HubConnectionBuilder()
             .withUrl(HUB_URL + "/lobbyhub")
-            .withAutomaticReconnect()
+            .withAutomaticReconnect([0, 2000, 5000, 10000, 30000, 60000, 120000])
             .build();
 
         // Establish the connection

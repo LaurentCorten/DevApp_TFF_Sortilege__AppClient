@@ -17,9 +17,22 @@
     @apply w-full p-0 flex flex-1 flex-col overflow-scroll;
 }
 
+.roomList-bar
+{
+    @apply w-full h-8 flex items-center justify-between;
+}
+
 .room-bar
 {
     @apply w-full h-8 flex items-center justify-between;
+}
+
+.room-bar:hover {
+    @apply bg-stone-600;
+}
+
+.room-bar--selected {
+    @apply bg-stone-600;
 }
 
 .lobby-btns-container

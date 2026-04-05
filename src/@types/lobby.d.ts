@@ -34,15 +34,18 @@ export type Room = {
     id: string;
     name: string;
     creatorId: string;
-    guestId?: string | null;
+    guestId: string | null;
     creationDate: string;
 }
 
 export type RoomsListPropsType = {
-    hasEnterLobby: boolean;
+    hasEnterLobby: boolean,
+    onclickRoomBar: (roomId: string) => void,
+    selectedRoomId: string | null
 }
 
 export type RoomProps = {
     closed: boolean,
-    roomId: string
+    roomId: string,
+    onLeaveRoom: () => void,
 };
