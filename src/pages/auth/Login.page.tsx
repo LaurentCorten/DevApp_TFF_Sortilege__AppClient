@@ -2,11 +2,10 @@ import { useActionState } from "react";
 import { Link, Navigate } from "react-router";
 import { toast } from "sonner";
 import z from "zod";
-import type { LogMemberDto, MemberState } from "../../@types/member";
+import type { AuthFormState, MemberDto } from "../../@types/member";
 import { PushLogin } from "../../services/auth/auth.service";
-import { useAtom } from "jotai";
-import { accessToken } from "../../atom/store";
 import style from "./Auth.module.css";
+import { useGlobalState } from "../../context/Context";
 
 const LogMemberScheme =
     z.object({
@@ -16,13 +15,10 @@ const LogMemberScheme =
             .regex(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$/, { error: "Le mot de passe doit contenir minimum 8 caractères dont au moins 1 Majuscule, 1 minuscule, 1 chiffre et 1 autre" }),
     });
 
-
-
 export default function LoginPage() {
 
-    const [token, setToken] = useAtom(accessToken);
-
-    const loginAction = async (_state: MemberState, formData: FormData): Promise<MemberState> => {
+    const { memberState, memberDispatch } = useGlobalState();
+    const loginAction = async (_state: AuthFormState, formData: FormData): Promise<AuthFormState> => {
 
         const { data, error, success } = await LogMemberScheme.safeParseAsync(Object.fromEntries(formData.entries()));
 
@@ -34,8 +30,8 @@ export default function LoginPage() {
             };
         }
 
-        const logMember: LogMemberDto = {
-            emailAddress: data.email,
+        const logMember: MemberDto = {
+            email: data.email,
             password: data.pwd1,
         };
 
@@ -45,8 +41,9 @@ export default function LoginPage() {
 
         if (result.success) {
             toast.success(result.data.message);
-
-            setToken(result.data.token);
+            memberDispatch({ type: "SET_MEMBER", payload: result.data.member });
+            memberDispatch({ type: "SET_ACCESS_TOKEN", payload: result.data.token });
+            localStorage.setItem("accessToken", result.data.token);
 
             return {
                 formData: null,
@@ -66,10 +63,9 @@ export default function LoginPage() {
 
     };
 
-
     const [state, handleSubmit, isPending] = useActionState(loginAction, { formData: null, error: null });
 
-    if (token) {
+    if (memberState.accessToken) {
         return <Navigate to='/' replace />;
     }
 

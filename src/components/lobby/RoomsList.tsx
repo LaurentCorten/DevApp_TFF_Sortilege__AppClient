@@ -8,7 +8,7 @@ import style from "./Lobby.module.css";
 
 
 export default function RoomsList({ hasEnterLobby }: RoomsListPropsType) {
-    const { lobbyState, lobbyDispatch } = useGlobalState();
+    const { lobbyState, lobbyDispatch, memberState } = useGlobalState();
     const [hasFailed, setHasFailed] = useState(false);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function RoomsList({ hasEnterLobby }: RoomsListPropsType) {
         if (!hasEnterLobby) return;
 
         const fetchRoomsList = async () => {
-            const result = await PullRoomsList();
+            const result = await PullRoomsList(memberState.accessToken);
             if (result.success) {
                 lobbyDispatch({ type: "SET_ROOMS_LIST", payload: result.data });
             } else {

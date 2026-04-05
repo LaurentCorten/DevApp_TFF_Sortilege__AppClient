@@ -1,13 +1,11 @@
 import axios from 'axios';
-import { accessToken, store } from "../../atom/store";
 import type { Room } from "../../@types/lobby";
 import type { ServiceResult } from "../../@types/global";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function JoinLobby(connectionId: string): Promise<ServiceResult<void>> {
+export async function JoinLobby(connectionId: string, accessToken: string): Promise<ServiceResult<void>> {
 
-    const token = store.get(accessToken);
     let result;
 
     try {
@@ -18,7 +16,7 @@ export async function JoinLobby(connectionId: string): Promise<ServiceResult<voi
                 baseURL: API_URL,
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${accessToken}`
                 }
             }
         );
@@ -39,9 +37,8 @@ export async function JoinLobby(connectionId: string): Promise<ServiceResult<voi
     };
 }
 
-export async function PushNewRoom(name: string, connectionId: string): Promise<ServiceResult<Room>> {
+export async function PushNewRoom(name: string, connectionId: string, accessToken: string): Promise<ServiceResult<Room>> {
 
-    const token = store.get(accessToken);
     let result;
 
     try {
@@ -51,7 +48,7 @@ export async function PushNewRoom(name: string, connectionId: string): Promise<S
             {
                 baseURL: API_URL,
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${accessToken}`
                 }
             }
         );
@@ -73,9 +70,8 @@ export async function PushNewRoom(name: string, connectionId: string): Promise<S
     };
 }
 
-export async function PullRoomsList(): Promise<ServiceResult<Room[]>> {
+export async function PullRoomsList(accessToken: string): Promise<ServiceResult<Room[]>> {
 
-    const token = store.get(accessToken);
     let result;
 
     try {
@@ -84,7 +80,7 @@ export async function PullRoomsList(): Promise<ServiceResult<Room[]>> {
             {
                 baseURL: API_URL,
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${accessToken}`
                 }
             }
         );

@@ -1,4 +1,6 @@
+import type React from "react";
 import type { LobbyStateType } from "./lobby";
+import type { MemberAction, MemberState } from "./member";
 
 export type GenericAuthorizedBtnPropsType = {
     btnTxtContent: string,
@@ -13,10 +15,12 @@ export type GlobalStatePropsType = {
 };
 
 export type GlobalStateContextType = {
+    memberState: MemberState,
+    memberDispatch: React.Dispatch<MemberAction>,
     lobbyState: LobbyStateType,
     lobbyDispatch: React.Dispatch<LobbyActionType>
 };
 
 export type ServiceResult<T> =
     | { success: true; data: T }
-    | { success: false; error: string };
+    | { success: false; error: string; statusCode?: number };

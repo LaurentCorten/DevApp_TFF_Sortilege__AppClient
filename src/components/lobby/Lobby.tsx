@@ -19,7 +19,7 @@ export default function Lobby() {
     const [isRoomFormClosed, setIsRoomFormClosed] = useState(true);
     const [isRoomClosed, setIsRoomClosed] = useState(true);
     const [openRoomId, setOpenRoomId] = useState("");
-    const { lobbyDispatch } = useGlobalState();
+    const { lobbyDispatch, memberState } = useGlobalState();
 
     const ConnectLobby = async () => {
 
@@ -34,7 +34,7 @@ export default function Lobby() {
         // 2. Join the global lobby SignalR group
         const connectionId = lobbySignalRService.getConnectionId();
         if (connectionId) {
-            const joinResult = await JoinLobby(connectionId);
+            const joinResult = await JoinLobby(connectionId, memberState.accessToken);
             if (!joinResult.success) {
                 toast.error(joinResult.error);
                 return;

@@ -3,7 +3,7 @@ import z from 'zod';
 import { PushRegistration } from '../../services/auth/auth.service';
 import { toast } from "sonner";
 import { Link } from "react-router";
-import type { MemberState, NewMemberDto } from "../../@types/member";
+import type { AuthFormState, MemberDto } from "../../@types/member";
 import style from "./Auth.module.css";
 
 
@@ -22,16 +22,11 @@ const NewMemberScheme =
     })
         .refine((data) => data.pwd1 === data.pwd2, { error: "Les mots de passe ne sont pas identiques", path: ['pwd2'] });
 
-
-// Extraction of type
-// export type NewMemberData = z.infer<typeof NewMemberScheme>;
-//? Inutile jusqu'ici
-
 // Main function
 export default function RegisterPage() {
 
     // form Action
-    const onRegisterSubmit = async (_state: MemberState, formData: FormData): Promise<MemberState> => {
+    const onRegisterSubmit = async (_state: AuthFormState, formData: FormData): Promise<AuthFormState> => {
 
         //data validation w. zod
         const { data, error, success } = await NewMemberScheme.safeParseAsync(Object.fromEntries(formData.entries()));
@@ -46,7 +41,7 @@ export default function RegisterPage() {
         }
 
         // Mapping
-        const newMember: NewMemberDto = {
+        const newMember: MemberDto = {
             nick: data.nick,
             email: data.email,
             password: data.pwd1,

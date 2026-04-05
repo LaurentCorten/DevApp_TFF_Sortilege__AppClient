@@ -7,7 +7,6 @@ import { PushNewRoom } from "../../services/lobby/lobby.controllers.service";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
 import { useAtomValue } from "jotai";
-import { accessToken } from "../../atom/store";
 import { useGlobalState } from "../../context/Context";
 
 
@@ -25,10 +24,10 @@ const NewRoomScheme =
 // Main Function
 export default function NewRoomForm({ closed, CloseForm, OpenRoom }: NewRoomFormProps) {
 
-    const { lobbyState } = useGlobalState();
+    const { lobbyState, memberState } = useGlobalState();
 
     console.log(`closed = ${closed}`);
-    const auth = useAtomValue(accessToken);
+    const auth = memberState.accessToken;
     const navigate = useNavigate();
 
     // Handle form action submit
