@@ -3,7 +3,7 @@
 
 .stone-btn {
     @apply h-10.5 
-        px-4 py-2 bg-myStone-800 bg-stone7 border border-myStone-900/70
+        px-4 py-2 bg-red-950 bg-stone13 border border-myStone-900/70
         shadow-[inset_6px_6px_3px_rgba(255,255,255,0.2),inset_-6px_-6px_3px_rgba(0,0,0,0.3)]
         transition-all duration-100
         font-bold text-engraved;
@@ -13,17 +13,17 @@
 }
 
 .stone-btn:hover {
-    @apply bg-stone-600
+    @apply bg-red-900
         shadow-[inset_8px_8px_3px_rgba(255,255,255,0.2),inset_-8px_-8px_3px_rgba(0,0,0,0.2)];
 }
 
 .stone-btn:active {
-    @apply bg-myStone-700
+    @apply bg-red-950
         shadow-[inset_-4px_-4px_2px_rgba(255,255,255,0.2),inset_4px_4px_2px_rgba(0,0,0,0.2)];
 }
 
 .stone-btn:disabled, .stone-btn:disabled&:hover, .stone-btn:disabled&:active {
-    @apply bg-stone-600/80
+    @apply bg-red-950/80
         shadow-[inset_6px_6px_3px_rgba(255,255,255,0.2),inset_-6px_-6px_3px_rgba(0,0,0,0.3)];
 }
 
@@ -53,6 +53,11 @@
     shadow-[inset_-2px_-2px_0px_rgba(255,255,255,0.2),inset_2px_2px_0px_rgba(0,0,0,0.2)];
 }
 
+.velin-sheet {
+    @apply pl-16! pr-8! py-12! bg-velin bg-center bg-no-repeat overflow-y-scroll;
+
+    background-size: 100% 100%;
+}
 
 
 /* .bar-hp {

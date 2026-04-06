@@ -22,7 +22,7 @@ a
 {
   &:hover
   {
-    @apply text-hoverTxt;
+    @apply text-red-900;
   }
 }
 

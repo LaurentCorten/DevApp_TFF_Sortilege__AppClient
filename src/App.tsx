@@ -12,6 +12,7 @@ import Footer from './components/footer/Footer';
 import SortilegePage from "./pages/playroom/sortilege/Sortilege.page";
 import SortilegeLobbyPage from "./pages/playroom/sortilege/SortilegeLobby.page";
 import SortilegeGamePage from "./pages/playroom/sortilege/SortilegeGame.page";
+import AuthPage from "./pages/auth/Auth.page";
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
             <Route path='cardList' element={<CardListPage />} />
             <Route path='rules' element={<RulesPage />} />
           </Route>
-          <Route path='auth'>
+          <Route path='auth' element={<AuthPage />}>
             <Route index element={<LoginPage />} />
             <Route path='register' element={<RegisterPage />} />
           </Route>

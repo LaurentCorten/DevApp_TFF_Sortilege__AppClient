@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Link } from "react-router";
 import type { AuthFormState, MemberDto } from "../../@types/member";
 import style from "./Auth.module.css";
+import clsx from "clsx";
 
 
 
@@ -78,37 +79,37 @@ export default function RegisterPage() {
     const [state, handleSubmit, isPending] = useActionState(onRegisterSubmit, { formData: null, error: null });
 
     return (
-        <section className={style["form-container"]}>
+        <section className={clsx(style["form-container"], "stone-panel-800")}>
             <h2>Inscritions</h2>
             <form className={style['form']} action={handleSubmit}>
                 <div>
                     <label htmlFor={'nick'}>Pseudo : </label>
-                    <input type='text' id={'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
+                    <input className="stone-input" type='text' id={'nick'} name='nick' defaultValue={state.formData?.get('nick')?.toString()} />
                     {state.error?.nick && (<span>{state.error.nick.join(', ')}</span>)}
                 </div>
                 <div>
                     <label htmlFor={"email"}>Email* : </label>
-                    <input type="email" id={'email'} name='email' placeholder='ex: user@example.com' required defaultValue={state.formData?.get('email')?.toString()} />
+                    <input className="stone-input" type="email" id={'email'} name='email' placeholder='ex: user@example.com' required defaultValue={state.formData?.get('email')?.toString()} />
                     {state.error?.email && (<span>{state.error.email.join(', ')}</span>)}
 
                 </div>
                 <div>
                     <label htmlFor={'pwd1'}>Choix du Mot de Passe* :</label>
-                    <input type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
+                    <input className="stone-input" type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
                     {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
                 </div>
                 <div>
                     <label htmlFor={'pwd2'}>Confirmation du Mot de Passe* :</label>
-                    <input type='password' id={'pwd2'} name='pwd2' placeholder='ex: Test123!' required />
+                    <input className="stone-input" type='password' id={'pwd2'} name='pwd2' placeholder='ex: Test123!' required />
                     {state.error?.pwd2 && (<span>{state.error.pwd2.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className={style['btn']} type='submit'>S'enregistrer</button>
+                <button disabled={isPending} className={clsx(style['btn'], "stone-btn")} type='submit'>S'enregistrer</button>
                 {state.error?.server && (<span>{state.error.server}</span>)}
             </form>
             <div>
                 <p>Déjà Inscrit ?</p>
-                <Link to='../'><button className={style['btn']}>Connectez-vous ici !</button></Link>
+                <Link to='../'><button className={clsx(style['btn'], "stone-btn")}>Connectez-vous ici !</button></Link>
             </div>
-        </section>
+        </section >
     );
 } 

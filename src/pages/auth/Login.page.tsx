@@ -6,6 +6,7 @@ import type { AuthFormState, MemberDto } from "../../@types/member";
 import { PushLogin } from "../../services/auth/auth.service";
 import style from "./Auth.module.css";
 import { useGlobalState } from "../../context/Context";
+import clsx from "clsx";
 
 const LogMemberScheme =
     z.object({
@@ -69,25 +70,25 @@ export default function LoginPage() {
     }
 
     return (
-        <section className={style["form-container"]}>
+        <section className={clsx(style["form-container"], "stone-panel-800")}>
             <h2>Connection</h2>
             <form className={style['form']} action={handleSubmit}>
                 <div>
                     <label htmlFor={"email"}>Email* : </label>
-                    <input type="email" id={'email'} name='email' placeholder='ex: user@example.com' required />
+                    <input className="stone-input" type="email" id={'email'} name='email' placeholder='ex: user@example.com' required />
                     {state.error?.email && (<span>{state.error.email.join(', ')}</span>)}
                 </div>
                 <div>
                     <label htmlFor={'pwd'}>Mot de Passe* :</label>
-                    <input type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
+                    <input className="stone-input" type='password' id={'pwd1'} name='pwd1' placeholder='ex: Test123!' required />
                     {state.error?.pwd1 && (<span>{state.error.pwd1.join(', ')}</span>)}
                 </div>
-                <button disabled={isPending} className={style['btn']} type='submit'>Se connecter</button>
+                <button disabled={isPending} className={clsx(style['btn'], "stone-btn")} type='submit'>Se connecter</button>
                 {state.error?.server && (<span>{state.error?.server}</span>)}
             </form>
             <div>
                 <p>Pas encore Inscrit ?</p>
-                <Link to='register'><button className={style['btn']}>Inscrivez-vous ici !</button></Link>
+                <Link to='register'><button className={clsx(style['btn'], "stone-btn")}>Inscrivez-vous ici !</button></Link>
             </div>
         </section>
     );

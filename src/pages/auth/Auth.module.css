@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "../../tailwind.custom.css";
 
+.auth-container {
+    @apply w-full h-full bg-castle bg-center bg-cover flex items-center justify-center;
+}
 
 .form-container
 {
@@ -9,6 +12,10 @@
     *
     {
         @apply flex flex-col;
+    }
+    
+    h2 {
+        @apply text-engraved;
     }
 
     form 
@@ -28,7 +35,7 @@
 
     .btn
     {
-        @apply w-fit h-fit py-1 px-4 m-4 border rounded-4xl bg-stone-400 self-center;
+        @apply w-fit h-fit py-1 px-4 m-4 border rounded-4xl bg-red-950 self-center;
 
         &:hover
         {

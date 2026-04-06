@@ -9,7 +9,7 @@ export default function NavBar() {
         <nav id="nav-bar" className={style["nav-bar"]}>
             <ul>
                 <li>
-                    <Link to="/">Auberge</Link>
+                    <Link to="/">Taverne</Link>
                 </li>
                 <li>
                     <Link to="/playroom">Salle de jeu</Link>

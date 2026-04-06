@@ -26,7 +26,11 @@
 
     .cheat-sheet-container
     {
-        @apply xl:w-90 2xl:w-125 h-full bg-lightWood bg-cover p-4 xl:flex flex-col text-black;
+        @apply xl:w-90 2xl:w-125 h-full bg-lightWood bg-cover p-4 xl:flex flex-col text-black items-center justify-center;
+
+        .cheat-sheet {
+            @apply min-h-8/10 max-h-8/10 w-9/10 m-4 flex flex-col items-center
+        }
     }
 
 }

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "../../tailwind.custom.css";
+
+.taverne-container {
+    @apply w-full h-full bg-taverne3 bg-cover bg-center md:bg-top-left bg-no-repeat p-8 flex flex-col text-center;
+}
+
+h2 {
+    @apply mb-6 text-black text-4xl font-[cursive] no-underline;
+}
+
+h3 {
+    @apply text-xl underline
+}
+.taverne-main-container {
+    @apply w-full flex-1 p-4 flex flex-col text-justify bg-amber-50/30 rounded-2xl text-black text-lg gap-4;
+}
+
+.profil-container {
+    @apply w-full h-full bg-amber-200/50 flex items-center justify-center text-center;
+}
